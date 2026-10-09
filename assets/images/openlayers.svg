@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="60" height="60">
+  <defs>
+    <linearGradient id="olGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1F6B75"/>
+      <stop offset="100%" stop-color="#00AAAC"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="#0d1b2a"/>
+  <!-- OpenLayers 3 stacked layers -->
+  <polygon points="60,25 95,45 60,65 25,45" fill="#00AAAC" opacity="0.9"/>
+  <polygon points="60,45 95,65 60,85 25,65" fill="#1F6B75" opacity="0.8"/>
+  <polygon points="60,65 95,85 60,105 25,85" fill="#004D54" opacity="0.9"/>
+</svg>

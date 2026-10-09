@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Begüm Miray Dengiz | Web GIS & Geomatik Mühendisliği Portfolyosu</title>
+  <meta name="description" content="GMT 458 Web GIS dersi için hazırlanmış kişisel web sayfası ve WebGIS portfolyosu. OpenLayers, Leaflet ve modern mekânsal teknolojiler.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">🌐</span>
+        <span>Begüm Miray <span style="color: var(--primary-light);">.WebGIS</span></span>
+      </a>
+
+      <div class="nav-right-cluster">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Temayı Değiştir" title="Temayı Değiştir">☀️</button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link active">Hakkımda & Özgeçmiş</a></li>
+          <li><a href="technologies.html" class="nav-link">Teknolojiler & Tablo <span class="nav-badge">CSS Tablo</span></a></li>
+          <li><a href="maps.html" class="nav-link">Web Haritaları <span class="nav-badge" style="background: rgba(168,85,247,0.2); color: var(--primary-light); border-color: rgba(168,85,247,0.35);">OL & Leaflet</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="main-content">
+    
+    <!-- Hero Section (Background & Profile) -->
+    <section class="hero-grid animate-fade-up">
+      <div class="hero-text">
+        <div class="section-badge">✨ GMT 458 • Web GIS Projesi</div>
+        <h1 class="shimmer-text">Merhaba, Ben Begüm Miray Dengiz</h1>
+        <div class="hero-role">
+          <span>📐 Geomatik Mühendisi Adayı</span>
+          <span>•</span>
+          <span>🗺️ Web Haritacılığı & CBS Meraklısı</span>
+        </div>
+        <p class="hero-bio">
+          Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü öğrencisiyim. Coğrafi Bilgi Sistemleri (CBS), 
+          açık kaynaklı WebGIS kütüphaneleri (<strong>OpenLayers</strong> ve <strong>Leaflet</strong>), mekânsal veri tabanları 
+          ve modern web teknolojilerini bir araya getirerek dinamik ve kullanıcı dostu harita deneyimleri üretiyorum.
+        </p>
+
+        <div class="hero-actions">
+          <a href="maps.html" class="btn btn-primary">
+            <span>🗺️ Web Haritalarını İncele (OL & Leaflet)</span>
+          </a>
+          <a href="technologies.html" class="btn btn-secondary">
+            <span>📊 Teknolojiler & Görsel Tablo</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Avatar with CSS animation glow -->
+      <div class="hero-avatar-card">
+        <div class="avatar-wrapper animate-float">
+          <img src="assets/images/avatar.svg" alt="Begüm Miray Dengiz Avatar" class="avatar-img animate-pulse-glow">
+          <div class="avatar-status-badge">
+            <span class="status-dot"></span>
+            <span>Hacettepe Geomatik</span>
+          </div>
+        </div>
+        <h3 style="font-size: 1.2rem; margin-top: 0.5rem;">Begüm Miray Dengiz</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">GMT 458: Web GIS Dersi</p>
+      </div>
+    </section>
+
+    <!-- Education & Academic Background Section -->
+    <section class="section-header">
+      <div class="section-badge">Akademik Altyapı & Çalışma Alanları</div>
+      <h2 class="section-title">Eğitim ve Uzmanlık Odaklarım</h2>
+      <p class="section-desc">
+        Mekânsal verinin toplanmasından web ortamında interaktif olarak sunulmasına kadar geçen tüm Geomatik ve WebGIS yaşam döngüsünü öğreniyorum.
+      </p>
+    </section>
+
+    <div class="cards-grid">
+      <article class="info-card">
+        <div class="card-icon-box">🏛️</div>
+        <h3>Hacettepe Üniversitesi</h3>
+        <p>
+          Mühendislik Fakültesi, Geomatik Mühendisliği Bölümü. Web GIS (GMT 458), Uzaktan Algılama, Kartografya, Jeodezi ve Fotogrametri odaklı lisans eğitimi.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="card-icon-box">🗺️</div>
+        <h3>WebGIS & İnteraktif Kartografya</h3>
+        <p>
+          OpenLayers ve Leaflet kullanarak istemci taraflı harita geliştirme; GeoJSON/WMS katmanlarının entegrasyonu, ölçekleme ve sınır denetimleri.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="card-icon-box">💾</div>
+        <h3>Mekânsal Veri Yönetimi</h3>
+        <p>
+          PostgreSQL/PostGIS, QGIS ve mekânsal analizler. Python ile coğrafi veri işleme (GeoPandas, Shapely) ve açık veri standartları (OGC).
+        </p>
+      </article>
+    </div>
+
+    <!-- GEOMATICS EDUCATION TIMELINE -->
+    <section class="timeline-section">
+      <div class="section-header">
+        <div class="section-badge">⏳ Geomatik Mühendisliği Yol Haritası</div>
+        <h2 class="section-title">Eğitim & Mesleki Zaman Çizelgesi</h2>
+        <p class="section-desc">
+          Geomatik mühendisliği lisans programı boyunca tamamlanan temel dersler, saha ölçmeleri ve WebGIS projeleri.
+        </p>
+      </div>
+
+      <div class="timeline-container">
+        
+        <!-- Timeline Item 1 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-year">1. Sınıf • Temel Jeodezi & Ölçmeler</span>
+              <span class="table-badge badge-desktop">Jeodezi & Matematik</span>
+            </div>
+            <h3 class="timeline-title">Mühendislik Temelleri & Ölçme Bilgisi</h3>
+            <p>
+              Harita projeksiyon sistemleri (UTM, Gauss-Krüger), elipsoid hesapları, nivelman ve total station ile saha ölçme teknikleri kazanıldı.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 2 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-year">2. Sınıf • CBS & Kartografya</span>
+              <span class="table-badge badge-webgis">Masaüstü CBS & Veri</span>
+            </div>
+            <h3 class="timeline-title">Coğrafi Bilgi Sistemleri (QGIS & ArcGIS)</h3>
+            <p>
+              Vektör ve raster veri modelleri, tamponlama (buffering), bindirme analizleri (overlay) ve tematik harita üretimi gerçekleştirildi.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 3 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card">
+            <div class="timeline-meta">
+              <span class="timeline-year">3. Sınıf • Saha & Mekânsal Analiz</span>
+              <span class="table-badge badge-spatial-db">PostGIS & Uzaktan Algılama</span>
+            </div>
+            <h3 class="timeline-title">Mesleki Staj & Mekânsal Veritabanı</h3>
+            <p>
+              Mekânsal SQL sorguları (ST_Intersects, ST_Contains), Landsat/Sentinel uydu görüntülerinin işlenmesi ve indeks (NDVI) analizleri tamamlandı.
+            </p>
+          </div>
+        </div>
+
+        <!-- Timeline Item 4 -->
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-card" style="border-color: var(--border-glow); box-shadow: var(--shadow-glow);">
+            <div class="timeline-meta">
+              <span class="timeline-year" style="color: var(--primary-light); background: rgba(168,85,247,0.2);">4. Sınıf • GMT 458 Web GIS</span>
+              <span class="table-badge badge-webgis" style="background: var(--primary); color: #fff;">Aktif Dönem</span>
+            </div>
+            <h3 class="timeline-title">Modern Web Haritacılığı & İnteraktif Portfolyo</h3>
+            <p>
+              Leaflet ve OpenLayers ile istemci taraflı WebGIS geliştirme, marker zoom threshold çözümü, dünya tekrarını engelleme ve GitHub Pages yayını.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Highlights & Assignment Objectives Summary -->
+    <section class="table-container" style="padding: 2.25rem;">
+      <h3 style="font-size: 1.45rem; margin-bottom: 1.25rem; color: var(--text-main);">📌 Ödev Kapsamında Eksiksiz Tamamlanan Kriterler</h3>
+      <div class="cards-grid" style="margin-bottom: 0;">
+        <div style="background: rgba(168,85,247,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
+          <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">✨ CSS Animasyonları (%10)</h4>
+          <p style="font-size: 0.9rem;">
+            Float animasyonu, radar darbesi (pulse glow), degrade ışıltılı başlıklar ve interaktif hover efektleri oluşturuldu.
+          </p>
+        </div>
+        <div style="background: rgba(56,189,248,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
+          <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">📊 Görselli Tablo (%10)</h4>
+          <p style="font-size: 0.9rem;">
+            Kullanılan WebGIS araçları ve CBS yazılımları, orijinal SVG logoları, canlı arama ve filtreleme seçenekleriyle tablolaştırıldı.
+          </p>
+        </div>
+        <div style="background: rgba(129,140,248,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
+          <h4 style="color: var(--accent); margin-bottom: 0.5rem;">🌍 OpenLayers & Leaflet (%20)</h4>
+          <p style="font-size: 0.9rem;">
+            İki bağımsız harita kuruldu, uydu görüntüsü altlığı ve canlı koordinat takibiyle zenginleştirildi.
+          </p>
+        </div>
+        <div style="background: rgba(251,191,36,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
+          <h4 style="color: var(--warning); margin-bottom: 0.5rem;">🎯 Zoom Threshold & World Wrap (%20)</h4>
+          <p style="font-size: 0.9rem;">
+            Marker çakışmasını önleyen zoom eşiği ve dünya tekrarını ortadan kaldıran <code>wrapX: false</code> / <code>noWrap: true</code> çözüldü.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-title">GMT 458 – Web GIS | Ödev 1: Kişisel Web Sayfası</div>
+        <div class="footer-subtitle">Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü © <span id="currentYear">2026</span> Begüm Miray Dengiz</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="technologies.html">Teknolojiler</a></li>
+        <li><a href="maps.html">Haritalar</a></li>
+        <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener">Peer Review Sistemi ↗</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

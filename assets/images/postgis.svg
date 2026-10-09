@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="60" height="60">
+  <defs>
+    <linearGradient id="pgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#336791"/>
+      <stop offset="100%" stop-color="#234663"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="#1b2838"/>
+  <circle cx="60" cy="60" r="40" fill="none" stroke="url(#pgGrad)" stroke-width="8"/>
+  <!-- Elephant trunk / GIS target grid -->
+  <path d="M45 45 C45 35 75 35 75 55 C75 75 55 75 55 85" fill="none" stroke="#68b4f7" stroke-width="6" stroke-linecap="round"/>
+  <circle cx="55" cy="85" r="5" fill="#f39c12"/>
+</svg>

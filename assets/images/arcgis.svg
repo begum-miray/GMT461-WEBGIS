@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="60" height="60">
+  <defs>
+    <linearGradient id="arcgisGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0079C1"/>
+      <stop offset="100%" stop-color="#004575"/>
+    </linearGradient>
+  </defs>
+  <rect width="120" height="120" rx="24" fill="#0b192c"/>
+  <circle cx="60" cy="60" r="36" fill="url(#arcgisGrad)"/>
+  <!-- Globe latitude & longitude lines -->
+  <ellipse cx="60" cy="60" rx="36" ry="18" fill="none" stroke="#60a5fa" stroke-width="3" opacity="0.8"/>
+  <line x1="60" y1="24" x2="60" y2="96" stroke="#60a5fa" stroke-width="3" opacity="0.8"/>
+  <line x1="24" y1="60" x2="96" y2="60" stroke="#60a5fa" stroke-width="3" opacity="0.8"/>
+</svg>
