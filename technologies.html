@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kullanılan Teknolojiler & Beceriler | Begüm Miray Dengiz WebGIS</title>
+  <meta name="description" content="GMT 458 Web GIS dersi için kullanılan teknolojiler, açık kaynaklı kütüphaneler ve görselli tabular bilgi tablosu.">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">🌐</span>
+        <span>Begüm Miray <span style="color: var(--primary-light);">.WebGIS</span></span>
+      </a>
+
+      <div class="nav-right-cluster">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Temayı Değiştir" title="Temayı Değiştir">☀️</button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Hakkımda & Özgeçmiş</a></li>
+          <li><a href="technologies.html" class="nav-link active">Teknolojiler & Tablo <span class="nav-badge">CSS Tablo</span></a></li>
+          <li><a href="maps.html" class="nav-link">Web Haritaları <span class="nav-badge" style="background: rgba(168,85,247,0.2); color: var(--primary-light); border-color: rgba(168,85,247,0.35);">OL & Leaflet</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <div class="section-header animate-fade-up">
+      <div class="section-badge">Ödev Gereksinimi: CSS Tabular Information with Images (%10)</div>
+      <h1 class="section-title">CBS & Web Harita Teknolojileri</h1>
+      <p class="section-desc">
+        Geomatik mühendisliğinde ve modern WebGIS mimarisinde kullandığım araçlar, harita kütüphaneleri ve yazılımların detaylı tabular dökümü. Canlı arama ve filtreleme araçlarıyla hızlıca inceleyebilirsiniz.
+      </p>
+    </div>
+
+    <!-- TABULAR INFORMATION WITH IMAGES SECTION (%10) -->
+    <div class="table-container animate-fade-up">
+      
+      <!-- Toolbar with Live Search & Category Filter -->
+      <div class="table-toolbar">
+        <div class="search-box-wrapper">
+          <span class="search-icon-pos">🔍</span>
+          <input type="text" id="tableSearchInput" class="search-input" placeholder="Teknoloji ara (örn: Leaflet, QGIS)..." aria-label="Tabloda Ara">
+        </div>
+
+        <div class="filter-pills-group">
+          <button class="filter-btn active" data-filter="all">Tümü (6)</button>
+          <button class="filter-btn" data-filter="webgis">WebGIS</button>
+          <button class="filter-btn" data-filter="desktop">Masaüstü CBS</button>
+          <button class="filter-btn" data-filter="db">Veritabanı</button>
+          <button class="filter-btn" data-filter="dev">Yazılım</button>
+        </div>
+      </div>
+
+      <div class="table-responsive">
+        <table class="custom-table">
+          <thead>
+            <tr>
+              <th scope="col">Yazılım / Kütüphane & Logo</th>
+              <th scope="col">Kategori</th>
+              <th scope="col">Temel Kullanım & Fonksiyon</th>
+              <th scope="col">Öğrenme / Yetkinlik</th>
+              <th scope="col">Ödevdeki Durumu</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+            <!-- Leaflet -->
+            <tr data-category="webgis">
+              <td>
+                <div class="table-item-cell">
+                  <div class="table-logo-wrapper">
+                    <img src="assets/images/leaflet.svg" alt="Leaflet Logo" class="table-logo">
+                  </div>
+                  <div>
+                    <span class="tech-name">Leaflet.js</span>
+                    <span class="tech-desc">v1.9.4 • JS Harita Kütüphanesi</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="table-badge badge-webgis">WebGIS Kütüphanesi</span></td>
+              <td>Hafif, mobil uyumlu ve eklenti dostu interaktif 2D web haritaları geliştirme.</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div class="proficiency-bar-bg">
+                    <div class="proficiency-fill" style="width: 90%;"></div>
+                  </div>
+                  <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">90%</span>
+                </div>
+              </td>
+              <td><span class="issue-status-badge status-active">maps.html'de Aktif</span></td>
+            </tr>
+
+            <!-- OpenLayers -->
+            <tr data-category="webgis">
+              <td>
+                <div class="table-item-cell">
+                  <div class="table-logo-wrapper">
+                    <img src="assets/images/openlayers.svg" alt="OpenLayers Logo" class="table-logo">
+                  </div>
+                  <div>
+                    <span class="tech-name">OpenLayers</span>
+                    <span class="tech-desc">v9.x • Güçlü Web Haritalama API'si</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="table-badge badge-webgis">WebGIS Kütüphanesi</span></td>
+              <td>Projeksiyon dönüşümleri (EPSG:4326 / 3857), gelişmiş vektör ve raster katman analizi.</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div class="proficiency-bar-bg">
+                    <div class="proficiency-fill" style="width: 85%;"></div>
+                  </div>
+                  <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">85%</span>
+                </div>
+              </td>
+              <td><span class="issue-status-badge status-active">maps.html'de Aktif</span></td>
+            </tr>
+
+            <!-- QGIS -->
+            <tr data-category="desktop">
+              <td>
+                <div class="table-item-cell">
+                  <div class="table-logo-wrapper">
+                    <img src="assets/images/qgis.svg" alt="QGIS Logo" class="table-logo">
+                  </div>
+                  <div>
+                    <span class="tech-name">QGIS</span>
+                    <span class="tech-desc">v3.34 LTR • Açık Kaynak Masaüstü CBS</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="table-badge badge-desktop">Masaüstü CBS</span></td>
+              <td>Mekânsal katman düzenleme, tampon (buffer) analizi, GeoJSON ve Shapefile dışa aktarımı.</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div class="proficiency-bar-bg">
+                    <div class="proficiency-fill" style="width: 95%;"></div>
+                  </div>
+                  <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">95%</span>
+                </div>
+              </td>
+              <td><span class="issue-status-badge status-active">Veri Üretiminde</span></td>
+            </tr>
+
+            <!-- ArcGIS Pro -->
+            <tr data-category="desktop">
+              <td>
+                <div class="table-item-cell">
+                  <div class="table-logo-wrapper">
+                    <img src="assets/images/arcgis.svg" alt="ArcGIS Logo" class="table-logo">
+                  </div>
+                  <div>
+                    <span class="tech-name">ArcGIS Pro</span>
+                    <span class="tech-desc">Esri Mekânsal Çözümleri</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="table-badge badge-desktop">Masaüstü CBS</span></td>
+              <td>3D arazi modeli görselleştirme, harita servisleri (MapServer/FeatureServer) ve jeoistatistik.</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div class="proficiency-bar-bg">
+                    <div class="proficiency-fill" style="width: 80%;"></div>
+                  </div>
+                  <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">80%</span>
+                </div>
+              </td>
+              <td><span class="issue-status-badge status-active">Ders Uygulaması</span></td>
+            </tr>
+
+            <!-- PostGIS -->
+            <tr data-category="db">
+              <td>
+                <div class="table-item-cell">
+                  <div class="table-logo-wrapper">
+                    <img src="assets/images/postgis.svg" alt="PostGIS Logo" class="table-logo">
+                  </div>
+                  <div>
+                    <span class="tech-name">PostgreSQL / PostGIS</span>
+                    <span class="tech-desc">İlişkisel Mekânsal Veri Tabanı</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="table-badge badge-spatial-db">Mekânsal Veritabanı</span></td>
+              <td>ST_Intersects, ST_Buffer, mekânsal indeksleme (GIST) ve büyük coğrafi veri sorgulama.</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div class="proficiency-bar-bg">
+                    <div class="proficiency-fill" style="width: 75%;"></div>
+                  </div>
+                  <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">75%</span>
+                </div>
+              </td>
+              <td><span class="issue-status-badge status-active">Teorik & Lab</span></td>
+            </tr>
+
+            <!-- Python Geo Stack -->
+            <tr data-category="dev">
+              <td>
+                <div class="table-item-cell">
+                  <div class="table-logo-wrapper">
+                    <img src="assets/images/python.svg" alt="Python Logo" class="table-logo">
+                  </div>
+                  <div>
+                    <span class="tech-name">Python Geo-Stack</span>
+                    <span class="tech-desc">GeoPandas • Shapely • Rasterio</span>
+                  </div>
+                </div>
+              </td>
+              <td><span class="table-badge badge-dev">Yazılım & Veri Bilimi</span></td>
+              <td>Otomatik veri temizleme, koordinat dönüşümü ve WebGIS için GeoJSON dönüştürme betikleri.</td>
+              <td>
+                <div style="display: flex; align-items: center; gap: 0.75rem;">
+                  <div class="proficiency-bar-bg">
+                    <div class="proficiency-fill" style="width: 85%;"></div>
+                  </div>
+                  <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">85%</span>
+                </div>
+              </td>
+              <td><span class="issue-status-badge status-active">Aktif Kullanımda</span></td>
+            </tr>
+
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Comparison & Tech Architecture Cards -->
+    <section class="cards-grid">
+      <article class="info-card">
+        <div class="card-icon-box">⚡</div>
+        <h3>Leaflet vs OpenLayers Seçimi</h3>
+        <p>
+          Leaflet hızlı, hafif ve temel haritalama senaryoları için kusursuzdur. OpenLayers ise farklı koordinat referans sistemleri (CRS) ve karmaşık vektör veri katmanları için endüstri standardıdır.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="card-icon-box">🎯</div>
+        <h3>Ödev Kriterlerine Uyum</h3>
+        <p>
+          Bu sayfa yönergede yer alan <em>"CSS: Tabular information with images (%10)"</em> ve <em>"CSS: Animation (%10)"</em> maddelerini modern tasarım ve SVG logolarıyla karşılar.
+        </p>
+      </article>
+
+      <article class="info-card">
+        <div class="card-icon-box">🚀</div>
+        <h3>Sıradaki Adım</h3>
+        <p>
+          İki haritanın çalıştığı ve zoom threshold ile dünya tekrarı sorunlarının çözüldüğü interaktif sayfaya göz atın:
+          <br><br>
+          <a href="maps.html" class="btn btn-primary btn-sm" style="margin-top: 0.5rem;">Web Haritalarına Git ➔</a>
+        </p>
+      </article>
+    </section>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-title">GMT 458 – Web GIS | Ödev 1: Kişisel Web Sayfası</div>
+        <div class="footer-subtitle">Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü © <span id="currentYear">2026</span> Begüm Miray Dengiz</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="technologies.html">Teknolojiler</a></li>
+        <li><a href="maps.html">Haritalar</a></li>
+        <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener">Peer Review Sistemi ↗</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
