@@ -43,6 +43,12 @@ const LEAFLET_ZOOM_THRESHOLD = 12; // Markers only visible when zoom >= 12
 let isLeafletThresholdActive = true;
 let isLeafletNoWrapActive = true;
 
+// Distance Measurement Ruler State
+let isLeafletMeasureActive = false;
+let measurePoints = [];
+let measurePolyline = null;
+let measureMarkers = [];
+
 // Base Tile Layer URLs
 const LEAFLET_TILE_PROVIDERS = {
   osm: {
@@ -191,6 +197,93 @@ function setupLeafletControls() {
       renderLeafletMarkers();
     });
   });
+
+  // Distance Measurement Ruler Controls
+  const btnMeasure = document.getElementById('leaflet-measure-btn');
+  const btnClearMeasure = document.getElementById('leaflet-clear-measure-btn');
+  const measureBadge = document.getElementById('leaflet-measure-badge');
+  const measureVal = document.getElementById('leaflet-measure-val');
+
+  if (btnMeasure) {
+    btnMeasure.addEventListener('click', () => {
+      isLeafletMeasureActive = !isLeafletMeasureActive;
+
+      if (isLeafletMeasureActive) {
+        btnMeasure.textContent = '📏 Cetvel Modu: Açık (Tıklayın)';
+        btnMeasure.classList.add('measure-active-btn');
+        leafletMap.getContainer().style.cursor = 'crosshair';
+        if (measureBadge) measureBadge.style.display = 'flex';
+        leafletMap.on('click', handleMeasureClick);
+      } else {
+        btnMeasure.textContent = '📏 Cetvel Aracı (Mesafe Ölç)';
+        btnMeasure.classList.remove('measure-active-btn');
+        leafletMap.getContainer().style.cursor = '';
+        leafletMap.off('click', handleMeasureClick);
+      }
+    });
+  }
+
+  function handleMeasureClick(e) {
+    if (!isLeafletMeasureActive) return;
+
+    measurePoints.push(e.latlng);
+
+    // Add marker for the clicked point
+    const pointMarker = L.circleMarker(e.latlng, {
+      radius: 6,
+      fillColor: '#38bdf8',
+      color: '#ffffff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.9
+    }).addTo(leafletMap);
+    
+    pointMarker.bindTooltip(`Nokta ${measurePoints.length}`, { permanent: false, direction: 'top' });
+    measureMarkers.push(pointMarker);
+
+    // If 2 or more points, draw line and calculate total distance
+    if (measurePoints.length >= 2) {
+      if (measurePolyline) {
+        leafletMap.removeLayer(measurePolyline);
+      }
+
+      measurePolyline = L.polyline(measurePoints, {
+        color: '#a855f7',
+        weight: 4,
+        dashArray: '6, 8',
+        opacity: 0.95
+      }).addTo(leafletMap);
+
+      let totalDistMeters = 0;
+      for (let i = 0; i < measurePoints.length - 1; i++) {
+        totalDistMeters += measurePoints[i].distanceTo(measurePoints[i + 1]);
+      }
+
+      if (measureVal) {
+        if (totalDistMeters >= 1000) {
+          measureVal.textContent = `${(totalDistMeters / 1000).toFixed(2)} km`;
+        } else {
+          measureVal.textContent = `${Math.round(totalDistMeters)} m`;
+        }
+      }
+
+      if (btnClearMeasure) btnClearMeasure.style.display = 'inline-flex';
+    }
+  }
+
+  if (btnClearMeasure) {
+    btnClearMeasure.addEventListener('click', () => {
+      measurePoints = [];
+      if (measurePolyline) {
+        leafletMap.removeLayer(measurePolyline);
+        measurePolyline = null;
+      }
+      measureMarkers.forEach(m => leafletMap.removeLayer(m));
+      measureMarkers = [];
+      if (measureVal) measureVal.textContent = '0 m';
+      btnClearMeasure.style.display = 'none';
+    });
+  }
 
   // Zoom Buttons
   const btnZoomIn = document.getElementById('leaflet-zoom-campus');

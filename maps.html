@@ -46,12 +46,12 @@
   <main class="main-content">
     
     <div class="section-header animate-fade-up">
-      <div class="section-badge">✨ Ödev Kriterleri: OpenLayers (%10) + Leaflet (%10) + Sorun Çözümleri (%20)</div>
+      <div class="section-badge">✨ İnteraktif WebGIS Haritalama & Mekânsal Analiz</div>
       <h1 class="section-title">İnteraktif WebGIS Harita Vitrini</h1>
       <p class="section-desc">
         Aşağıda <strong>Leaflet</strong> ve <strong>OpenLayers</strong> ile geliştirilmiş iki tam fonksiyonel harita yer almaktadır. 
-        Haritalar; <em>Esri Gerçek Uydu Görüntüsü</em>, <em>Canlı Koordinat Takibi</em>, <em>Kategori Filtreleme</em>, 
-        <em>Issue 1 (Marker Zoom Eşiği)</em> ve <em>Issue 2 (Dünya Tekrarı)</em> çözümleriyle donatılmıştır.
+        Haritalar; <em>Esri Gerçek Uydu Görüntüsü</em>, <em>Canlı Koordinat Takibi</em>, <em>Mesafe Ölçüm Cetveli</em>, 
+        <em>Ölçek Eşiği (Zoom Threshold)</em> ve <em>Dünya Tekrarı Sınırlandırması</em> ile donatılmıştır.
       </p>
     </div>
 
@@ -91,10 +91,17 @@
           </div>
         </div>
 
-        <!-- Leaflet Map Container & Coordinates Badge -->
+        <!-- Leaflet Map Container & Coordinates Badge & Measurement Badge -->
         <div class="map-canvas-container">
           <div id="leaflet-map" class="map-canvas"></div>
           <div id="leaflet-coords-display" class="map-coords-badge">Lat: 39.86540 | Lng: 32.73380</div>
+          
+          <!-- Interactive Ruler Distance Display Badge -->
+          <div id="leaflet-measure-badge" class="map-measure-badge" style="display: none;">
+            <span>📏 Ölçülen Mesafe:</span>
+            <strong id="leaflet-measure-val">0 m</strong>
+            <span style="font-size: 0.75rem; color: var(--text-muted);">(Noktalara tıklayın)</span>
+          </div>
         </div>
 
         <!-- Issue 1 & Issue 2 Status & Interactive Test Controls -->
@@ -106,17 +113,20 @@
             </div>
 
             <div class="issue-pill">
-              <span class="issue-label">Issue 1 (Marker):</span>
+              <span class="issue-label">Ölçek Eşiği (Threshold):</span>
               <span id="leaflet-marker-status" class="issue-status-badge status-active">Görünür (Zoom ≥ 12)</span>
             </div>
 
             <div class="issue-pill">
-              <span class="issue-label">Issue 2 (noWrap):</span>
+              <span class="issue-label">Dünya Sınırı (noWrap):</span>
               <span id="leaflet-wrap-status" class="issue-status-badge status-active">noWrap: Aktif (Tek Dünya)</span>
             </div>
           </div>
 
           <div class="map-actions">
+            <!-- Distance Measurement Ruler Buttons -->
+            <button id="leaflet-measure-btn" class="btn btn-secondary btn-sm" title="Harita üzerine tıklayarak iki veya daha fazla nokta arası mesafe ölçün">📏 Cetvel Aracı (Mesafe Ölç)</button>
+            <button id="leaflet-clear-measure-btn" class="btn btn-secondary btn-sm" style="display: none; border-color: var(--danger); color: #f87171;" title="Mesafe ölçümünü temizle">🗑️ Ölçümü Sıfırla</button>
             <button id="leaflet-zoom-campus" class="btn btn-secondary btn-sm" title="Kampüse zoom yap">🔍 Kampüse Yaklaş (Zoom 14)</button>
             <button id="leaflet-zoom-world" class="btn btn-secondary btn-sm" title="Dünya görünümüne git">🌍 Dünyaya Uzaklaş (Zoom 3)</button>
             <button id="leaflet-toggle-threshold" class="btn btn-primary btn-sm" title="Zoom eşiğini aç veya kapat">Zoom Eşiğini Kapat</button>
@@ -126,15 +136,15 @@
 
         <!-- Academic & Technical Explanation of Issues -->
         <div class="solution-explanation-box">
-          <h4>💡 Leaflet'te İki Sorunun Çözüm Mantığı:</h4>
+          <h4>💡 Mekânsal Optimizasyon ve Sınır Denetimi (Leaflet):</h4>
           <p>
-            <strong>Issue 1 (Zoom Threshold):</strong> Kampüsteki yakın noktalar uzak ölçekte üst üste biner. 
+            <strong>1. Ölçek Eşiği (Zoom Threshold - Marker Çakışması):</strong> Kampüsteki yakın noktalar uzak ölçekte üst üste biner. 
             Bu sorunu çözmek için Leaflet'te <code>map.on('zoomend')</code> olayı dinlenir. 
             Mevcut zoom seviyesi belirlenen eşikten (<code>threshold = 12</code>) küçük olduğunda <code>map.removeLayer(markersLayer)</code> ile marker grubu haritadan kaldırılır; 
             yaklaşıldığında ise <code>map.addLayer(markersLayer)</code> ile yeniden gösterilir.
           </p>
           <p style="margin-top: 0.5rem;">
-            <strong>Issue 2 (Earth Repeating):</strong> Mercator projeksiyonunda döşeme katmanları yatayda sonsuz tekrarlar. 
+            <strong>2. Dünya Tekrarını Önleme (noWrap / Tile Bounding):</strong> Mercator projeksiyonunda döşeme katmanları yatayda sonsuz tekrarlar. 
             Bunu engellemek için <code>L.tileLayer</code> seçeneklerinde <span class="code-snippet">noWrap: true</span> ve 
             <span class="code-snippet">bounds: [[-90, -180], [90, 180]]</span> tanımlanmış, harita için 
             <span class="code-snippet">maxBounds</span> ve <span class="code-snippet">maxBoundsViscosity: 1.0</span> ayarlanmıştır.
@@ -188,13 +198,13 @@
             </div>
 
             <div class="issue-pill">
-              <span class="issue-label">Issue 1 (minZoom):</span>
+              <span class="issue-label">Ölçek Eşiği (minZoom):</span>
               <span id="ol-marker-status" class="issue-status-badge status-active">Görünür (Zoom ≥ 11)</span>
             </div>
 
             <div class="issue-pill">
-              <span class="issue-label">Issue 2 (wrapX):</span>
-              <span id="ol-wrap-status" class="issue-status-badge status-active">wrapX: false (Tek Dünya - Çözüldü)</span>
+              <span class="issue-label">Dünya Sınırı (wrapX):</span>
+              <span id="ol-wrap-status" class="issue-status-badge status-active">wrapX: false (Tek Dünya)</span>
             </div>
           </div>
 
@@ -207,14 +217,14 @@
 
         <!-- Academic & Technical Explanation of Issues -->
         <div class="solution-explanation-box">
-          <h4>💡 OpenLayers'ta İki Sorunun Çözüm Mantığı:</h4>
+          <h4>💡 Mekânsal Optimizasyon ve Sınır Denetimi (OpenLayers):</h4>
           <p>
-            <strong>Issue 1 (Zoom Threshold):</strong> OpenLayers vektör katmanlarında (<code>ol.layer.Vector</code>) doğrudan yerleşik 
+            <strong>1. Ölçek Eşiği (minZoom Özelliği):</strong> OpenLayers vektör katmanlarında (<code>ol.layer.Vector</code>) doğrudan yerleşik 
             <span class="code-snippet">minZoom: 11</span> özelliği bulunmaktadır. 
             Harita zoom seviyesi 11'in altına indiğinde OpenLayers otomatik olarak vektör katmanını çizmeyi durdurur; marker yığılması ve performans kaybı önlenir.
           </p>
           <p style="margin-top: 0.5rem;">
-            <strong>Issue 2 (Earth Repeating):</strong> OpenLayers'ta karo kaynağında (Tile Source) varsayılan olarak açık olan yatay tekrarı durdurmak için 
+            <strong>2. Dünya Tekrarını Önleme (wrapX: false & extent):</strong> OpenLayers'ta karo kaynağında (Tile Source) varsayılan olarak açık olan yatay tekrarı durdurmak için 
             <span class="code-snippet">new ol.source.OSM({ wrapX: false })</span> veya XYZ kaynağında <code>wrapX: false</code> tanımlanır. 
             Ayrıca <code>ol.View</code> üzerinde <span class="code-snippet">extent</span> sınırlandırılarak tek dünya görünümü kilitlenir.
           </p>
