@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="tr" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>İnteraktif Web Haritaları | OpenLayers & Leaflet (Begüm Miray Dengiz)</title>
+  <meta name="description" content="GMT 458 Web GIS dersi için OpenLayers ve Leaflet haritaları; uydu görüntüsü, canlı koordinat takibi, zoom threshold ve world wrapping çözümleri.">
+  
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- OpenLayers CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@v9.2.4/ol.css">
+  <script src="https://cdn.jsdelivr.net/npm/ol@v9.2.4/dist/ol.js"></script>
+
+  <!-- Custom Site Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg">
+</head>
+<body>
+
+  <!-- Site Navigation -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="index.html" class="brand-logo">
+        <span class="brand-icon">🌐</span>
+        <span>Begüm Miray <span style="color: var(--primary-light);">.WebGIS</span></span>
+      </a>
+
+      <div class="nav-right-cluster">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Temayı Değiştir" title="Temayı Değiştir">☀️</button>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">☰</button>
+
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html" class="nav-link">Hakkımda & Özgeçmiş</a></li>
+          <li><a href="technologies.html" class="nav-link">Teknolojiler & Tablo <span class="nav-badge">CSS Tablo</span></a></li>
+          <li><a href="maps.html" class="nav-link active">Web Haritaları <span class="nav-badge" style="background: rgba(168,85,247,0.2); color: var(--primary-light); border-color: rgba(168,85,247,0.35);">OL & Leaflet</span></a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    
+    <div class="section-header animate-fade-up">
+      <div class="section-badge">✨ Ödev Kriterleri: OpenLayers (%10) + Leaflet (%10) + Sorun Çözümleri (%20)</div>
+      <h1 class="section-title">İnteraktif WebGIS Harita Vitrini</h1>
+      <p class="section-desc">
+        Aşağıda <strong>Leaflet</strong> ve <strong>OpenLayers</strong> ile geliştirilmiş iki tam fonksiyonel harita yer almaktadır. 
+        Haritalar; <em>Esri Gerçek Uydu Görüntüsü</em>, <em>Canlı Koordinat Takibi</em>, <em>Kategori Filtreleme</em>, 
+        <em>Issue 1 (Marker Zoom Eşiği)</em> ve <em>Issue 2 (Dünya Tekrarı)</em> çözümleriyle donatılmıştır.
+      </p>
+    </div>
+
+    <!-- Map Showcase Grid -->
+    <div class="map-showcase-grid">
+
+      <!-- ===================================================================
+           1. LEAFLET HARİTASI KARTI
+           =================================================================== -->
+      <section class="map-card animate-fade-up">
+        <div class="map-card-header">
+          <div class="map-title-group">
+            <img src="assets/images/leaflet.svg" alt="Leaflet Logo" class="map-lib-icon">
+            <div>
+              <h2 class="map-card-title">1. Leaflet Haritası</h2>
+              <p class="map-card-subtitle">Hacettepe Beytepe Kampüsü • Uydu Katmanı & Canlı Koordinat Takibi</p>
+            </div>
+          </div>
+          <span class="table-badge badge-webgis">Leaflet v1.9.4</span>
+        </div>
+
+        <!-- Base Layer Switcher Ribbon -->
+        <div class="map-layer-selector-bar">
+          <span class="layer-select-label">🛰️ Altlık Katman:</span>
+          <div class="layer-radio-group">
+            <button class="layer-pill-btn leaflet-base-btn active" data-base="osm">🗺️ Sokak (OSM)</button>
+            <button class="layer-pill-btn leaflet-base-btn" data-base="satellite">🛰️ Esri Uydu Görüntüsü</button>
+            <button class="layer-pill-btn leaflet-base-btn" data-base="dark">🌑 Carto Dark</button>
+          </div>
+
+          <span class="layer-select-label" style="margin-left: auto;">📍 Kategori:</span>
+          <div class="layer-radio-group">
+            <button class="layer-pill-btn leaflet-cat-btn active" data-cat="all">Tümü</button>
+            <button class="layer-pill-btn leaflet-cat-btn" data-cat="academic">🏛️ Akademik</button>
+            <button class="layer-pill-btn leaflet-cat-btn" data-cat="social">⚽ Sosyal</button>
+            <button class="layer-pill-btn leaflet-cat-btn" data-cat="tech">🚀 Teknokent</button>
+          </div>
+        </div>
+
+        <!-- Leaflet Map Container & Coordinates Badge -->
+        <div class="map-canvas-container">
+          <div id="leaflet-map" class="map-canvas"></div>
+          <div id="leaflet-coords-display" class="map-coords-badge">Lat: 39.86540 | Lng: 32.73380</div>
+        </div>
+
+        <!-- Issue 1 & Issue 2 Status & Interactive Test Controls -->
+        <div class="map-controls-panel">
+          <div class="issue-indicator-group">
+            <div class="issue-pill">
+              <span class="issue-label">Mevcut Zoom:</span>
+              <span id="leaflet-current-zoom" class="issue-val">13</span>
+            </div>
+
+            <div class="issue-pill">
+              <span class="issue-label">Issue 1 (Marker):</span>
+              <span id="leaflet-marker-status" class="issue-status-badge status-active">Görünür (Zoom ≥ 12)</span>
+            </div>
+
+            <div class="issue-pill">
+              <span class="issue-label">Issue 2 (noWrap):</span>
+              <span id="leaflet-wrap-status" class="issue-status-badge status-active">noWrap: Aktif (Tek Dünya)</span>
+            </div>
+          </div>
+
+          <div class="map-actions">
+            <button id="leaflet-zoom-campus" class="btn btn-secondary btn-sm" title="Kampüse zoom yap">🔍 Kampüse Yaklaş (Zoom 14)</button>
+            <button id="leaflet-zoom-world" class="btn btn-secondary btn-sm" title="Dünya görünümüne git">🌍 Dünyaya Uzaklaş (Zoom 3)</button>
+            <button id="leaflet-toggle-threshold" class="btn btn-primary btn-sm" title="Zoom eşiğini aç veya kapat">Zoom Eşiğini Kapat</button>
+            <button id="leaflet-toggle-wrap" class="btn btn-primary btn-sm" title="Dünya tekrarını test et">Tekrarı İzin Ver (noWrap: false)</button>
+          </div>
+        </div>
+
+        <!-- Academic & Technical Explanation of Issues -->
+        <div class="solution-explanation-box">
+          <h4>💡 Leaflet'te İki Sorunun Çözüm Mantığı:</h4>
+          <p>
+            <strong>Issue 1 (Zoom Threshold):</strong> Kampüsteki yakın noktalar uzak ölçekte üst üste biner. 
+            Bu sorunu çözmek için Leaflet'te <code>map.on('zoomend')</code> olayı dinlenir. 
+            Mevcut zoom seviyesi belirlenen eşikten (<code>threshold = 12</code>) küçük olduğunda <code>map.removeLayer(markersLayer)</code> ile marker grubu haritadan kaldırılır; 
+            yaklaşıldığında ise <code>map.addLayer(markersLayer)</code> ile yeniden gösterilir.
+          </p>
+          <p style="margin-top: 0.5rem;">
+            <strong>Issue 2 (Earth Repeating):</strong> Mercator projeksiyonunda döşeme katmanları yatayda sonsuz tekrarlar. 
+            Bunu engellemek için <code>L.tileLayer</code> seçeneklerinde <span class="code-snippet">noWrap: true</span> ve 
+            <span class="code-snippet">bounds: [[-90, -180], [90, 180]]</span> tanımlanmış, harita için 
+            <span class="code-snippet">maxBounds</span> ve <span class="code-snippet">maxBoundsViscosity: 1.0</span> ayarlanmıştır.
+          </p>
+        </div>
+      </section>
+
+
+      <!-- ===================================================================
+           2. OPENLAYERS (OL) HARİTASI KARTI
+           =================================================================== -->
+      <section class="map-card animate-fade-up">
+        <div class="map-card-header">
+          <div class="map-title-group">
+            <img src="assets/images/openlayers.svg" alt="OpenLayers Logo" class="map-lib-icon">
+            <div>
+              <h2 class="map-card-title">2. OpenLayers (OL) Haritası</h2>
+              <p class="map-card-subtitle">Vektör Katmanlar, Esri Uydu Görüntüsü, Ölçek Çubuğu ve Tam Ekran</p>
+            </div>
+          </div>
+          <span class="table-badge badge-webgis">OpenLayers v9.2.4</span>
+        </div>
+
+        <!-- Base Layer Switcher Ribbon -->
+        <div class="map-layer-selector-bar">
+          <span class="layer-select-label">🛰️ Altlık Katman:</span>
+          <div class="layer-radio-group">
+            <button class="layer-pill-btn ol-base-btn active" data-base="osm">🗺️ Sokak (OSM)</button>
+            <button class="layer-pill-btn ol-base-btn" data-base="satellite">🛰️ Esri Uydu Görüntüsü</button>
+          </div>
+        </div>
+
+        <!-- OpenLayers Map Container & Coordinates Badge -->
+        <div class="map-canvas-container">
+          <div id="ol-map" class="map-canvas">
+            <!-- OpenLayers Popup Overlay Element -->
+            <div id="ol-popup" class="ol-popup">
+              <a href="#" id="ol-popup-closer" class="ol-popup-closer">✖</a>
+              <div id="ol-popup-content"></div>
+            </div>
+          </div>
+          <div id="ol-coords-display" class="map-coords-badge">Lat: 39.86540 | Lng: 32.73380</div>
+        </div>
+
+        <!-- Issue 1 & Issue 2 Status & Interactive Test Controls -->
+        <div class="map-controls-panel">
+          <div class="issue-indicator-group">
+            <div class="issue-pill">
+              <span class="issue-label">Mevcut Zoom:</span>
+              <span id="ol-current-zoom" class="issue-val">13</span>
+            </div>
+
+            <div class="issue-pill">
+              <span class="issue-label">Issue 1 (minZoom):</span>
+              <span id="ol-marker-status" class="issue-status-badge status-active">Görünür (Zoom ≥ 11)</span>
+            </div>
+
+            <div class="issue-pill">
+              <span class="issue-label">Issue 2 (wrapX):</span>
+              <span id="ol-wrap-status" class="issue-status-badge status-active">wrapX: false (Tek Dünya - Çözüldü)</span>
+            </div>
+          </div>
+
+          <div class="map-actions">
+            <button id="ol-zoom-campus" class="btn btn-secondary btn-sm">🔍 Kampüse Yaklaş (Zoom 14)</button>
+            <button id="ol-zoom-world" class="btn btn-secondary btn-sm">🌍 Dünyaya Uzaklaş (Zoom 3)</button>
+            <button id="ol-toggle-wrap" class="btn btn-primary btn-sm">Tekrarı İzin Ver (wrapX: true)</button>
+          </div>
+        </div>
+
+        <!-- Academic & Technical Explanation of Issues -->
+        <div class="solution-explanation-box">
+          <h4>💡 OpenLayers'ta İki Sorunun Çözüm Mantığı:</h4>
+          <p>
+            <strong>Issue 1 (Zoom Threshold):</strong> OpenLayers vektör katmanlarında (<code>ol.layer.Vector</code>) doğrudan yerleşik 
+            <span class="code-snippet">minZoom: 11</span> özelliği bulunmaktadır. 
+            Harita zoom seviyesi 11'in altına indiğinde OpenLayers otomatik olarak vektör katmanını çizmeyi durdurur; marker yığılması ve performans kaybı önlenir.
+          </p>
+          <p style="margin-top: 0.5rem;">
+            <strong>Issue 2 (Earth Repeating):</strong> OpenLayers'ta karo kaynağında (Tile Source) varsayılan olarak açık olan yatay tekrarı durdurmak için 
+            <span class="code-snippet">new ol.source.OSM({ wrapX: false })</span> veya XYZ kaynağında <code>wrapX: false</code> tanımlanır. 
+            Ayrıca <code>ol.View</code> üzerinde <span class="code-snippet">extent</span> sınırlandırılarak tek dünya görünümü kilitlenir.
+          </p>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-title">GMT 458 – Web GIS | Ödev 1: Kişisel Web Sayfası</div>
+        <div class="footer-subtitle">Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü © <span id="currentYear">2026</span> Begüm Miray Dengiz</div>
+      </div>
+      <ul class="footer-links">
+        <li><a href="index.html">Hakkımda</a></li>
+        <li><a href="technologies.html">Teknolojiler</a></li>
+        <li><a href="maps.html">Haritalar</a></li>
+        <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener">Peer Review Sistemi ↗</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/maps.js"></script>
+</body>
+</html>
