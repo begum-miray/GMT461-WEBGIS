@@ -4,11 +4,134 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Begüm Miray Dengiz | Web GIS & Geomatik Mühendisliği Portfolyosu</title>
-  <meta name="description" content="GMT 458 Web GIS dersi için hazırlanmış kişisel web sayfası ve WebGIS portfolyosu. OpenLayers, Leaflet ve modern mekânsal teknolojiler.">
+  <meta name="description" content="GMT 458 Web GIS dersi için hazırlanmış kişisel web sayfası ve WebGIS portfolyosu. OpenLayers, Leaflet ve Türkiye ile KKTC'de 30 gittiğim şehir haritası.">
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg">
 </head>
-<body>
+<body class="cover-open">
+
+  <!-- =========================================================================
+       Siteye Giriş Öncesi Animasyonlu Kapak Ekranı (Intro Cover / Splash Portal)
+       ========================================================================= -->
+  <aside id="siteCoverOverlay" class="site-cover-overlay" aria-label="Giriş Kapak Ekranı">
+    <!-- Topographic Contour Elevation Wave SVG Background -->
+    <svg class="cover-topo-svg" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="topoGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.4" />
+          <stop offset="50%" stop-color="#10b981" stop-opacity="0.7" />
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.3" />
+        </linearGradient>
+        <linearGradient id="northGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#34d399" />
+          <stop offset="100%" stop-color="#059669" />
+        </linearGradient>
+      </defs>
+      <path class="topo-line topo-1" d="M -100,140 Q 250,50 600,160 T 1300,110" />
+      <path class="topo-line topo-2" d="M -100,270 Q 350,180 700,300 T 1300,210" />
+      <path class="topo-line topo-3" d="M -100,410 Q 200,530 650,380 T 1300,450" />
+      <path class="topo-line topo-4" d="M -100,560 Q 450,460 800,590 T 1300,510" />
+      <path class="topo-line topo-5" d="M -100,690 Q 300,790 750,660 T 1300,720" />
+    </svg>
+
+    <!-- Animated Cartographic Grid & Graticule -->
+    <div class="cover-bg-grid"></div>
+
+    <!-- Geodetic Range Rings with Scale Labels -->
+    <div class="cover-radar-ring ring-outer">
+      <span class="range-tag">50 KM</span>
+    </div>
+    <div class="cover-radar-ring ring-mid">
+      <span class="range-tag">25 KM</span>
+    </div>
+    <div class="cover-radar-ring ring-inner">
+      <span class="range-tag">10 KM</span>
+    </div>
+
+    <!-- Rotating Radar Scan Beam -->
+    <div class="cover-scan-beam"></div>
+
+    <!-- Geodetic Targeting Reticle Crosshairs (Corner Benchmarks) -->
+    <div class="cover-reticle reticle-tl"><span>⌖ Δ NİRENGİ TRG-01 • 39°52'48" N, 32°44'23" E</span></div>
+    <div class="cover-reticle reticle-tr"><span>⌖ EPSG:5256 • TUREF / UTM 36N</span></div>
+    <div class="cover-reticle reticle-bl"><span>⌖ ELEVASYON: 915m • TUDKA DATUM</span></div>
+    <div class="cover-reticle reticle-br"><span>⌖ GNSS 3D-FIX • 18 UYDU AKTİF 🟢</span></div>
+
+    <!-- Cardinal Coordinate Points -->
+    <div class="cover-coord-tag tag-top">N 39° 55' 42" • KUZEY [WGS84]</div>
+    <div class="cover-coord-tag tag-bottom">S 36° 53' 49" • GÜNEY [WGS84]</div>
+    <div class="cover-coord-tag tag-left">W 26° 24' 51" • BATI [EPSG:4326]</div>
+    <div class="cover-coord-tag tag-right">E 43° 22' 23" • DOĞU [EPSG:4326]</div>
+
+    <div class="cover-modal-card">
+      <div class="cover-badge-pill">
+        <span class="badge-pulsing-dot"></span>
+        <span>Hacettepe Üniversitesi • Geomatik Mühendisliği</span>
+      </div>
+
+      <!-- Animated Compass Rose & Orbiting Satellite -->
+      <div class="cover-emblem-container animate-float">
+        <!-- Satellite Orbit Track -->
+        <div class="satellite-orbit-track">
+          <div class="orbiting-satellite" title="GNSS Uydusu">🛰️</div>
+        </div>
+
+        <div class="cover-logo-emblem">
+          <!-- SVG Animated Compass Rose -->
+          <svg class="compass-rose-svg" viewBox="0 0 100 100" aria-label="Jeodezik Pusula Gülü">
+            <!-- Outer Degree Ring with ticks -->
+            <circle cx="50" cy="50" r="46" class="compass-circle" />
+            <!-- Cardinal markers -->
+            <text x="50" y="13" class="compass-text comp-n">N</text>
+            <text x="91" y="53" class="compass-text comp-e">E</text>
+            <text x="50" y="93" class="compass-text comp-s">S</text>
+            <text x="9" y="53" class="compass-text comp-w">W</text>
+            <!-- 8-Point Compass Star -->
+            <polygon points="50,16 54,46 50,50 46,46" class="needle-north" />
+            <polygon points="50,84 54,54 50,50 46,54" class="needle-south" />
+            <polygon points="84,50 54,54 50,50 54,46" class="needle-east" />
+            <polygon points="16,50 46,54 50,50 46,46" class="needle-west" />
+            <polygon points="74,26 53,47 50,50 47,53" class="needle-sub" />
+            <polygon points="26,74 47,53 50,50 53,47" class="needle-sub" />
+            <polygon points="74,74 53,53 50,50 47,47" class="needle-sub" />
+            <polygon points="26,26 47,47 50,50 53,53" class="needle-sub" />
+            <!-- Center Pivot -->
+            <circle cx="50" cy="50" r="4.5" class="compass-pivot" />
+          </svg>
+        </div>
+      </div>
+
+      <h1 class="cover-title">
+        <span class="cover-title-sub">GMT 458 – WEB GIS DERSİ</span>
+        <span class="cover-title-main shimmer-text">Begüm Miray Dengiz</span>
+      </h1>
+
+      <p class="cover-tagline">
+        Kişisel Web Sayfası & Geomatik Mühendisliği Portfolyosu
+      </p>
+
+      <!-- Cartographic Mini Coordinates Bar -->
+      <div class="cover-geo-status">
+        <span class="geo-status-dot"></span>
+        <span>Harita Projeksiyonu: Web Mercator (EPSG:3857) • Jeodezik Datum: WGS84</span>
+      </div>
+
+      <!-- Action Enter Button -->
+      <div class="cover-action-box">
+        <button id="coverEnterBtn" class="cover-enter-btn" title="Siteye Giriş Yap ve Portfolyoyu Keşfet">
+          <span class="btn-ripple-glow"></span>
+          <span class="btn-content">
+            <span>🚀 SİTEYE GİRİŞ YAP</span>
+            <span class="btn-arrow">➔</span>
+          </span>
+        </button>
+        <p class="cover-hint-text">
+          <span>Butona tıklayarak veya <kbd>Enter</kbd> tuşuna basarak portfolyoya giriş yapabilirsiniz</span>
+        </p>
+      </div>
+
+    </div>
+  </aside>
 
   <!-- Site Navigation -->
   <header class="site-header">
@@ -19,14 +142,16 @@
       </a>
 
       <div class="nav-right-cluster">
+        <!-- Re-open Intro Cover Button -->
+        <button id="reopenCoverBtn" class="intro-cover-btn" aria-label="Giriş Kapağını Göster" title="Açılış Kapak Animasyonunu Tekrar Oynat">🎬 Giriş Kapağı</button>
         <!-- Theme Toggle Button -->
         <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Temayı Değiştir" title="Temayı Değiştir">☀️</button>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">☰</button>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="nav-link active">Hakkımda & Özgeçmiş</a></li>
-          <li><a href="technologies.html" class="nav-link">Teknolojiler & Tablo <span class="nav-badge">CSS Tablo</span></a></li>
-          <li><a href="maps.html" class="nav-link">Web Haritaları <span class="nav-badge" style="background: rgba(168,85,247,0.2); color: var(--primary-light); border-color: rgba(168,85,247,0.35);">OL & Leaflet</span></a></li>
+          <li><a href="index.html" class="nav-link active">Özgeçmiş</a></li>
+          <li><a href="technologies.html" class="nav-link">Tablo</a></li>
+          <li><a href="maps.html" class="nav-link">Web Haritaları</a></li>
         </ul>
       </div>
     </div>
@@ -52,7 +177,7 @@
 
         <div class="hero-actions">
           <a href="maps.html" class="btn btn-primary">
-            <span>🗺️ Web Haritalarını İncele (OL & Leaflet)</span>
+            <span>🗺️ Web Haritaları (OL & Leaflet)</span>
           </a>
           <a href="technologies.html" class="btn btn-secondary">
             <span>📊 Teknolojiler & Beceriler</span>
@@ -74,83 +199,7 @@
       </div>
     </section>
 
-    <!-- Education & Internships Section (Clean & Simple) -->
-    <section class="section-header">
-      <div class="section-badge">Akademik Eğitim & Deneyimler</div>
-      <h2 class="section-title">Eğitim ve Mesleki Stajlar</h2>
-      <p class="section-desc">
-        Hacettepe Üniversitesi'ndeki lisans eğitimim ve kamu ile özel sektörde tamamladığım mesleki stajlarım.
-      </p>
-    </section>
 
-    <div class="cards-grid">
-      <article class="info-card">
-        <div class="card-icon-box">🏛️</div>
-        <h3>Hacettepe Üniversitesi</h3>
-        <span class="table-badge badge-webgis" style="margin-bottom: 0.75rem;">Son Sınıf Öğrencisi</span>
-        <p>
-          Mühendislik Fakültesi Geomatik Mühendisliği Bölümü lisans eğitimi. CBS, Uzaktan Algılama, Kartografya ve WebGIS odaklı çalışmalar.
-        </p>
-      </article>
-
-      <article class="info-card">
-        <div class="card-icon-box">🛣️</div>
-        <h3>Karayolları 4. Bölge Müdürlüğü</h3>
-        <span class="table-badge badge-desktop" style="margin-bottom: 0.75rem;">Mesleki Staj</span>
-        <p>
-          Karayolu etüt ve proje uygulamaları, güzergah ölçmeleri, altyapı projeleri ve arazi-ofis jeodezik mühendislik çalışmaları.
-        </p>
-      </article>
-
-      <article class="info-card">
-        <div class="card-icon-box">📐</div>
-        <h3>Doruk Harita Şirketi</h3>
-        <span class="table-badge badge-spatial-db" style="margin-bottom: 0.75rem;">Mesleki Staj</span>
-        <p>
-          Özel sektör harita mühendisliği projeleri, halihazır harita üretimi, imar uygulamaları ve sayısal arazi ölçmeleri.
-        </p>
-      </article>
-
-      <article class="info-card">
-        <div class="card-icon-box">📜</div>
-        <h3>Çankaya LİHKAB</h3>
-        <span class="table-badge badge-dev" style="margin-bottom: 0.75rem;">Mesleki Staj</span>
-        <p>
-          Lisanslı Harita Kadastro Mühendislik Bürosu (LİHKAB) bünyesinde kadastro teknik hizmetleri, aplikasyon ve tescile konu işlemler.
-        </p>
-      </article>
-    </div>
-
-    <!-- Highlights & Core Competencies Section -->
-    <section class="table-container" style="padding: 2.25rem;">
-      <h3 style="font-size: 1.45rem; margin-bottom: 1.25rem; color: var(--text-main);">📌 WebGIS Yetkinlikleri & Temel Nitelikler</h3>
-      <div class="cards-grid" style="margin-bottom: 0;">
-        <div style="background: rgba(168,85,247,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
-          <h4 style="color: var(--primary-light); margin-bottom: 0.5rem;">✨ Modern Web Animasyonları</h4>
-          <p style="font-size: 0.9rem;">
-            Float animasyonu, radar darbesi (pulse glow), degrade ışıltılı başlıklar ve akıcı geçiş efektleri oluşturuldu.
-          </p>
-        </div>
-        <div style="background: rgba(56,189,248,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
-          <h4 style="color: var(--secondary); margin-bottom: 0.5rem;">📊 İnteraktif Teknoloji Matrisi</h4>
-          <p style="font-size: 0.9rem;">
-            Kullanılan WebGIS araçları ve CBS yazılımları, orijinal SVG logoları, canlı arama ve filtreleme seçenekleriyle sunuldu.
-          </p>
-        </div>
-        <div style="background: rgba(129,140,248,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
-          <h4 style="color: var(--accent); margin-bottom: 0.5rem;">🌍 Açık Kaynaklı Web Haritaları</h4>
-          <p style="font-size: 0.9rem;">
-            OpenLayers ve Leaflet ile bağımsız haritalar kuruldu; uydu altlığı ve canlı koordinat takibiyle zenginleştirildi.
-          </p>
-        </div>
-        <div style="background: rgba(251,191,36,0.06); padding: 1.35rem; border-radius: 14px; border: 1px solid var(--border-color);">
-          <h4 style="color: var(--warning); margin-bottom: 0.5rem;">🎯 Mekânsal Optimizasyon & Sınır Denetimi</h4>
-          <p style="font-size: 0.9rem;">
-            Marker çakışmasını önleyen ölçek eşiği ve dünya tekrarını ortadan kaldıran <code>wrapX: false</code> / <code>noWrap: true</code> sınırlandırmaları çözüldü.
-          </p>
-        </div>
-      </div>
-    </section>
 
   </main>
 
@@ -162,9 +211,9 @@
         <div class="footer-subtitle">Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü © <span id="currentYear">2026</span> Begüm Miray Dengiz</div>
       </div>
       <ul class="footer-links">
-        <li><a href="index.html">Hakkımda</a></li>
-        <li><a href="technologies.html">Teknolojiler</a></li>
-        <li><a href="maps.html">Haritalar</a></li>
+        <li><a href="index.html">Özgeçmiş</a></li>
+        <li><a href="technologies.html">Tablo</a></li>
+        <li><a href="maps.html">Web Haritaları</a></li>
         <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener">Peer Review Sistemi ↗</a></li>
       </ul>
     </div>
