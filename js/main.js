@@ -33,14 +33,6 @@ function initCoverScreen() {
 
   const urlParams = new URLSearchParams(window.location.search);
   const forceIntro = urlParams.get('intro') === 'true';
-  const isReload = (performance.getEntriesByType && 
-                    performance.getEntriesByType('navigation')[0] && 
-                    performance.getEntriesByType('navigation')[0].type === 'reload');
-
-  if (isReload) {
-    sessionStorage.removeItem('gmt458_visited_cover');
-  }
-
   const hasVisited = sessionStorage.getItem('gmt458_visited_cover');
 
   function openCover() {
