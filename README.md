@@ -5,7 +5,8 @@
 **Course:** GMT 458 – Web GIS  
 **Academic Term:** Fall 2026  
 **Peer-Review Portal:** [https://gmt458.hacettepe.edu.tr/](https://gmt458.hacettepe.edu.tr/)  
-**Live Deployment (GitHub Pages):** `https://<your-github-username>.github.io/gmt458_odev/`  
+**GitHub Repository:** [https://github.com/begum-miray/GMT461-WEBGIS](https://github.com/begum-miray/GMT461-WEBGIS)  
+**Live Deployment (GitHub Pages):** [https://begum-miray.github.io/GMT461-WEBGIS/](https://begum-miray.github.io/GMT461-WEBGIS/)  
 
 ---
 
