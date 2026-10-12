@@ -1,99 +1,16 @@
 /**
  * GMT 458 - Web GIS Assignment 1
- * main.js - Core UI interactions, Light/Dark theme toggle, table filtering,
- *           and Animated Intro Cover Screen (Kapak Animasyonu)
+ * main.js - Core UI interactions, Light/Dark theme toggle, active nav,
+ *           and table search & category filtering
  */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initCoverScreen();
   initThemeToggle();
   initMobileNav();
   initDynamicYear();
   highlightActiveNav();
   initTableSearchFilter();
 });
-
-/* ==========================================================================
-   0. Siteye Giriş Öncesi Kapak Ekranı & Animasyonlu Geçiş (Intro Cover Screen)
-   ========================================================================== */
-function initCoverScreen() {
-  const coverOverlay = document.getElementById('siteCoverOverlay');
-  const enterBtn = document.getElementById('coverEnterBtn');
-  const reopenBtn = document.getElementById('reopenCoverBtn');
-
-  // If on sub-pages (maps.html, technologies.html), handle reopen button navigation
-  if (!coverOverlay) {
-    if (reopenBtn) {
-      reopenBtn.addEventListener('click', () => {
-        window.location.href = 'index.html?intro=true';
-      });
-    }
-    return;
-  }
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const forceIntro = urlParams.get('intro') === 'true';
-  const isReload = (performance.getEntriesByType && 
-                    performance.getEntriesByType('navigation')[0] && 
-                    performance.getEntriesByType('navigation')[0].type === 'reload');
-
-  if (isReload) {
-    sessionStorage.removeItem('gmt458_visited_cover');
-  }
-
-  const hasVisited = sessionStorage.getItem('gmt458_visited_cover');
-
-  function openCover() {
-    coverOverlay.style.display = 'flex';
-    document.body.classList.add('cover-open');
-    // Force DOM reflow before removing fade-out class for smooth entrance
-    void coverOverlay.offsetWidth;
-    coverOverlay.classList.remove('cover-fade-out');
-  }
-
-  function closeCover() {
-    coverOverlay.classList.add('cover-fade-out');
-    document.body.classList.remove('cover-open');
-    sessionStorage.setItem('gmt458_visited_cover', 'true');
-
-    setTimeout(() => {
-      coverOverlay.style.display = 'none';
-    }, 850);
-  }
-
-  // Display cover on initial entry, page reload, or when ?intro=true is requested
-  if (forceIntro || !hasVisited) {
-    openCover();
-  } else {
-    coverOverlay.style.display = 'none';
-    document.body.classList.remove('cover-open');
-  }
-
-  // Enter button click triggers smooth transition
-  if (enterBtn) {
-    enterBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      closeCover();
-    });
-  }
-
-  // Keyboard shortcut: Press Enter or Space to enter site
-  document.addEventListener('keydown', (e) => {
-    if (coverOverlay.style.display !== 'none' && !coverOverlay.classList.contains('cover-fade-out')) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        closeCover();
-      }
-    }
-  });
-
-  // Re-open button on index.html
-  if (reopenBtn) {
-    reopenBtn.addEventListener('click', () => {
-      openCover();
-    });
-  }
-}
 
 /* ==========================================================================
    1. Light / Dark Theme Mode Toggle
@@ -115,12 +32,24 @@ function initThemeToggle() {
       updateThemeIcon(themeToggleBtn, newTheme);
     });
   }
+
+  // Update theme button tooltip when language changes
+  window.addEventListener('languageChanged', () => {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateThemeIcon(themeToggleBtn, currentTheme);
+  });
 }
 
 function updateThemeIcon(btn, theme) {
   if (!btn) return;
-  btn.textContent = theme === 'dark' ? '☀️' : '🌙';
-  btn.setAttribute('title', theme === 'dark' ? 'Aydınlık Moda Geç' : 'Karanlık Moda Geç');
+  const isDark = theme === 'dark';
+  btn.textContent = isDark ? '☀️' : '🌙';
+  const lang = (typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'tr');
+  const titleText = isDark 
+    ? (lang === 'tr' ? 'Aydınlık Moda Geç' : 'Switch to Light Mode')
+    : (lang === 'tr' ? 'Karanlık Moda Geç' : 'Switch to Dark Mode');
+  btn.setAttribute('title', titleText);
+  btn.setAttribute('aria-label', titleText);
 }
 
 /* ==========================================================================

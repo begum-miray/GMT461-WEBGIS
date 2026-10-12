@@ -365,6 +365,47 @@ const LEAFLET_TILE_PROVIDERS = {
   }
 };
 
+/**
+ * Universal bilingual popup HTML builder for visited cities
+ */
+function getCityPopupHtml(loc) {
+  const lang = (typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'tr');
+  const isEn = (lang === 'en');
+  const trans = (typeof cityTranslations !== 'undefined' && cityTranslations[loc.name]) ? cityTranslations[loc.name] : null;
+
+  const regionName = trans ? (isEn ? trans.region_en : trans.region_tr) : loc.region;
+  const descText = trans ? (isEn ? trans.desc_en : trans.desc_tr) : loc.desc;
+  const famousText = trans ? (isEn ? trans.famous_en : trans.famous_tr) : loc.famousPlaces;
+  const foodText = trans ? (isEn ? trans.food_en : trans.food_tr) : loc.localFood;
+
+  const tagLabel = isEn ? '📍 Visited City' : '📍 Gittiğim Şehir';
+  const famousLabel = isEn ? 'Famous Landmarks:' : 'Gezilecek Yerler:';
+  const foodLabel = isEn ? 'Local Cuisine:' : 'Yöresel Lezzetler:';
+  const coordsLabel = isEn ? `📐 Lat: ${loc.lat.toFixed(4)}° | Lng: ${loc.lng.toFixed(4)}°` : `📐 Enlem: ${loc.lat.toFixed(4)}° | Boylam: ${loc.lng.toFixed(4)}°`;
+
+  return `
+    <div class="map-popup-card">
+      <div class="map-popup-header">
+        <span class="map-popup-region">${regionName}</span>
+        <span class="map-popup-tag">${tagLabel}</span>
+      </div>
+      <h4 class="map-popup-title">${loc.name}</h4>
+      <p class="map-popup-desc">${descText}</p>
+      <div class="map-popup-meta">
+        <div class="map-popup-row">
+          <span class="popup-meta-icon">🏛️</span>
+          <div><strong>${famousLabel}</strong> ${famousText}</div>
+        </div>
+        <div class="map-popup-row">
+          <span class="popup-meta-icon">🍽️</span>
+          <div><strong>${foodLabel}</strong> <span class="food-highlight">${foodText}</span></div>
+        </div>
+        <div class="map-popup-coords">${coordsLabel}</div>
+      </div>
+    </div>
+  `;
+}
+
 function initLeafletMap() {
   const mapElement = document.getElementById('leaflet-map');
   if (!mapElement) return;
@@ -437,27 +478,7 @@ function renderLeafletMarkers() {
       });
 
       const marker = L.marker([loc.lat, loc.lng], { icon: customPin });
-      marker.bindPopup(`
-        <div class="map-popup-card">
-          <div class="map-popup-header">
-            <span class="map-popup-region">${loc.region}</span>
-            <span class="map-popup-tag">📍 Gittiğim Şehir</span>
-          </div>
-          <h4 class="map-popup-title">${loc.name}</h4>
-          <p class="map-popup-desc">${loc.desc}</p>
-          <div class="map-popup-meta">
-            <div class="map-popup-row">
-              <span class="popup-meta-icon">🏛️</span>
-              <div><strong>Gezilecek Yerler:</strong> ${loc.famousPlaces}</div>
-            </div>
-            <div class="map-popup-row">
-              <span class="popup-meta-icon">🍽️</span>
-              <div><strong>Yöresel Lezzetler:</strong> <span class="food-highlight">${loc.localFood}</span></div>
-            </div>
-            <div class="map-popup-coords">📐 Enlem: ${loc.lat.toFixed(4)}° | Boylam: ${loc.lng.toFixed(4)}°</div>
-          </div>
-        </div>
-      `);
+      marker.bindPopup(() => getCityPopupHtml(loc));
       leafletMarkersLayer.addLayer(marker);
     }
   });
@@ -469,6 +490,8 @@ function updateLeafletZoomUI() {
   const currentZoom = leafletMap.getZoom();
   const zoomDisplay = document.getElementById('leaflet-current-zoom');
   const markerStatus = document.getElementById('leaflet-marker-status');
+  const lang = (typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'tr');
+  const isEn = (lang === 'en');
 
   if (zoomDisplay) {
     zoomDisplay.textContent = currentZoom;
@@ -481,7 +504,9 @@ function updateLeafletZoomUI() {
         leafletMap.addLayer(leafletMarkersLayer);
       }
       if (markerStatus) {
-        markerStatus.textContent = 'Görünür (Zoom ≥ ' + LEAFLET_ZOOM_THRESHOLD + ')';
+        markerStatus.textContent = isEn 
+          ? `Visible (Zoom ≥ ${LEAFLET_ZOOM_THRESHOLD})` 
+          : `Görünür (Zoom ≥ ${LEAFLET_ZOOM_THRESHOLD})`;
         markerStatus.className = 'issue-status-badge status-active';
       }
     } else {
@@ -489,7 +514,9 @@ function updateLeafletZoomUI() {
         leafletMap.removeLayer(leafletMarkersLayer);
       }
       if (markerStatus) {
-        markerStatus.textContent = 'Gizli (Zoom < ' + LEAFLET_ZOOM_THRESHOLD + ') - Yığılma Önlendi';
+        markerStatus.textContent = isEn 
+          ? `Hidden (Zoom < ${LEAFLET_ZOOM_THRESHOLD}) - Clutter Avoided` 
+          : `Gizli (Zoom < ${LEAFLET_ZOOM_THRESHOLD}) - Yığılma Önlendi`;
         markerStatus.className = 'issue-status-badge status-inactive';
       }
     }
@@ -498,7 +525,7 @@ function updateLeafletZoomUI() {
       leafletMap.addLayer(leafletMarkersLayer);
     }
     if (markerStatus) {
-      markerStatus.textContent = 'Eşik Kapalı (Her Zaman Görünür)';
+      markerStatus.textContent = isEn ? 'Threshold Disabled (Always Visible)' : 'Eşik Kapalı (Her Zaman Görünür)';
       markerStatus.className = 'issue-status-badge status-active';
     }
   }
@@ -797,6 +824,8 @@ function updateOLZoomUI() {
   const zoom = Math.round(olMap.getView().getZoom() * 10) / 10;
   const zoomDisplay = document.getElementById('ol-current-zoom');
   const markerStatus = document.getElementById('ol-marker-status');
+  const lang = (typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'tr');
+  const isEn = (lang === 'en');
 
   if (zoomDisplay) {
     zoomDisplay.textContent = zoom;
@@ -804,10 +833,14 @@ function updateOLZoomUI() {
 
   if (markerStatus) {
     if (zoom >= OL_ZOOM_THRESHOLD) {
-      markerStatus.textContent = `Görünür (Zoom ≥ ${OL_ZOOM_THRESHOLD})`;
+      markerStatus.textContent = isEn 
+        ? `Visible (Zoom ≥ ${OL_ZOOM_THRESHOLD})` 
+        : `Görünür (Zoom ≥ ${OL_ZOOM_THRESHOLD})`;
       markerStatus.className = 'issue-status-badge status-active';
     } else {
-      markerStatus.textContent = `Gizli (Zoom < ${OL_ZOOM_THRESHOLD}) - Yığılma Önlendi`;
+      markerStatus.textContent = isEn 
+        ? `Hidden (Zoom < ${OL_ZOOM_THRESHOLD}) - Clutter Avoided` 
+        : `Gizli (Zoom < ${OL_ZOOM_THRESHOLD}) - Yığılma Önlendi`;
       markerStatus.className = 'issue-status-badge status-inactive';
     }
   }
@@ -842,33 +875,13 @@ function setupOLPopup() {
     if (feature) {
       const coordinates = feature.getGeometry().getCoordinates();
       const name = feature.get('name');
-      const desc = feature.get('description');
-      const region = feature.get('region');
-      const famousPlaces = feature.get('famousPlaces');
-      const localFood = feature.get('localFood');
-      const coords = feature.get('coords');
+      const loc = visitedCities.find(c => c.name === name);
 
-      content.innerHTML = `
-        <div class="map-popup-card" style="padding: 0.25rem;">
-          <div class="map-popup-header">
-            <span class="map-popup-region">${region}</span>
-            <span class="map-popup-tag">📍 Gittiğim Şehir</span>
-          </div>
-          <h4 class="map-popup-title" style="margin-top: 0.25rem;">${name}</h4>
-          <p class="map-popup-desc">${desc}</p>
-          <div class="map-popup-meta" style="margin-top: 0.5rem;">
-            <div class="map-popup-row">
-              <span class="popup-meta-icon">🏛️</span>
-              <div><strong>Gezilecek Yerler:</strong> ${famousPlaces}</div>
-            </div>
-            <div class="map-popup-row">
-              <span class="popup-meta-icon">🍽️</span>
-              <div><strong>Yöresel Lezzetler:</strong> <span class="food-highlight">${localFood}</span></div>
-            </div>
-            <div class="map-popup-coords">📐 ${coords}</div>
-          </div>
-        </div>
-      `;
+      if (loc) {
+        content.innerHTML = getCityPopupHtml(loc);
+      } else {
+        content.innerHTML = `<h4>${name}</h4>`;
+      }
       overlay.setPosition(coordinates);
     } else {
       overlay.setPosition(undefined);
@@ -950,3 +963,65 @@ function setupOLControls() {
     });
   }
 }
+
+// Global Language Change Listener for Map UI Elements
+window.addEventListener('languageChanged', (e) => {
+  const lang = e.detail ? e.detail.lang : (typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'tr');
+  const isEn = (lang === 'en');
+
+  updateLeafletZoomUI();
+  updateOLZoomUI();
+
+  // Update Leaflet Wrap Status
+  const leafletWrapStatus = document.getElementById('leaflet-wrap-status');
+  if (leafletWrapStatus) {
+    if (isLeafletNoWrapActive) {
+      leafletWrapStatus.textContent = isEn ? 'noWrap: Active (Single World)' : 'noWrap: Aktif (Tek Dünya)';
+    } else {
+      leafletWrapStatus.textContent = isEn ? 'noWrap: Disabled (Repeating)' : 'noWrap: Kapalı (Tekrar Eden Dünya)';
+    }
+  }
+
+  // Update Leaflet Toggle Wrap Button
+  const btnToggleWrap = document.getElementById('leaflet-toggle-wrap');
+  if (btnToggleWrap) {
+    btnToggleWrap.textContent = isLeafletNoWrapActive 
+      ? (isEn ? 'Allow Repeating (noWrap: false)' : 'Tekrarı İzin Ver (noWrap: false)')
+      : (isEn ? 'Lock Single World (noWrap: true)' : 'Tek Dünya Yap (noWrap: true)');
+  }
+
+  // Update Leaflet Toggle Threshold Button
+  const btnToggleThreshold = document.getElementById('leaflet-toggle-threshold');
+  if (btnToggleThreshold) {
+    btnToggleThreshold.textContent = isLeafletThresholdActive 
+      ? (isEn ? 'Disable Zoom Threshold' : 'Zoom Eşiğini Kapat')
+      : (isEn ? `Enable Zoom Threshold (${LEAFLET_ZOOM_THRESHOLD})` : `Zoom Eşiğini Aç (Threshold: ${LEAFLET_ZOOM_THRESHOLD})`);
+  }
+
+  // Update OpenLayers Wrap Status
+  const olWrapStatus = document.getElementById('ol-wrap-status');
+  if (olWrapStatus) {
+    if (!isOLWrapActive) {
+      olWrapStatus.textContent = isEn ? 'wrapX: false (Single World)' : 'wrapX: false (Tek Dünya - Çözüldü)';
+    } else {
+      olWrapStatus.textContent = isEn ? 'wrapX: true (Repeating)' : 'wrapX: true (Tekrar Eden Dünya)';
+    }
+  }
+
+  // Update OpenLayers Toggle Wrap Button
+  const btnOLWrap = document.getElementById('ol-toggle-wrap');
+  if (btnOLWrap) {
+    btnOLWrap.textContent = !isOLWrapActive 
+      ? (isEn ? 'Allow Repeating (wrapX: true)' : 'Tekrarı İzin Ver (wrapX: true)')
+      : (isEn ? 'Lock Single World (wrapX: false)' : 'Tekrarı Engelle (wrapX: false)');
+  }
+
+  // Update Measure Button if not currently active
+  const btnMeasure = document.getElementById('leaflet-measure-btn');
+  if (btnMeasure && !isLeafletMeasureActive) {
+    btnMeasure.textContent = isEn ? '📏 Ruler Tool (Measure Distance)' : '📏 Cetvel Aracı (Mesafe Ölç)';
+  } else if (btnMeasure && isLeafletMeasureActive) {
+    btnMeasure.textContent = isEn ? '🛑 Stop Measuring' : '🛑 Ölçümü Tamamla';
+  }
+});
+

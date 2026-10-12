@@ -15,20 +15,25 @@
     <div class="nav-container">
       <a href="index.html" class="brand-logo">
         <span class="brand-icon">🌐</span>
-        <span>Begüm Miray <span style="color: var(--primary-light);">.WebGIS</span></span>
+        <span><span data-i18n="nav.brand">Begüm Miray</span> <span style="color: var(--primary-light);" data-i18n="nav.brand_sub">.WebGIS</span></span>
       </a>
 
       <div class="nav-right-cluster">
-        <!-- Re-open Intro Cover Button -->
-        <button id="reopenCoverBtn" class="intro-cover-btn" aria-label="Giriş Kapağını Göster" title="Açılış Kapak Animasyonunu Tekrar Oynat">🎬 Giriş Kapağı</button>
+        <!-- Multi-Language Selector (TR / EN) -->
+        <div class="lang-switcher" role="group" aria-label="Dil Seçimi / Language Selector">
+          <button class="lang-btn active" data-lang="tr" title="Türkçe">TR</button>
+          <span class="lang-divider">|</span>
+          <button class="lang-btn" data-lang="en" title="English">EN</button>
+        </div>
+
         <!-- Theme Toggle Button -->
-        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Temayı Değiştir" title="Temayı Değiştir">☀️</button>
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Temayı Değiştir" title="Temayı Değiştir" data-i18n-title="theme.title_light">☀️</button>
         <button class="mobile-toggle" id="mobileToggle" aria-label="Menüyü Aç">☰</button>
 
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html" class="nav-link">Özgeçmiş</a></li>
-          <li><a href="technologies.html" class="nav-link active">Tablo</a></li>
-          <li><a href="maps.html" class="nav-link">Web Haritaları</a></li>
+          <li><a href="index.html" class="nav-link" data-i18n="nav.resume">Özgeçmiş</a></li>
+          <li><a href="technologies.html" class="nav-link active" data-i18n="nav.table">Tablo</a></li>
+          <li><a href="maps.html" class="nav-link" data-i18n="nav.maps">Web Haritaları</a></li>
         </ul>
       </div>
     </div>
@@ -38,9 +43,9 @@
   <main class="main-content">
     
     <div class="section-header animate-fade-up">
-      <div class="section-badge">💻 Jeo-Uzamsal Yazılım & Araç Yetkinlikleri</div>
-      <h1 class="section-title">CBS & Web Harita Teknolojileri</h1>
-      <p class="section-desc">
+      <div class="section-badge" data-i18n="tech.badge">💻 Jeo-Uzamsal Yazılım & Araç Yetkinlikleri</div>
+      <h1 class="section-title" data-i18n="tech.title">CBS & Web Harita Teknolojileri</h1>
+      <p class="section-desc" data-i18n="tech.desc">
         Geomatik mühendisliğinde ve modern WebGIS mimarisinde kullandığım araçlar, harita kütüphaneleri ve yazılımların detaylı tabular dökümü. Canlı arama ve filtreleme araçlarıyla hızlıca inceleyebilirsiniz.
       </p>
     </div>
@@ -52,17 +57,17 @@
       <div class="table-toolbar">
         <div class="search-box-wrapper">
           <span class="search-icon-pos">🔍</span>
-          <input type="text" id="tableSearchInput" class="search-input" placeholder="Teknoloji ara (örn: Leaflet, QGIS)..." aria-label="Tabloda Ara">
+          <input type="text" id="tableSearchInput" class="search-input" placeholder="Teknoloji ara (örn: Leaflet, QGIS)..." data-i18n-placeholder="tech.search_placeholder" aria-label="Tabloda Ara">
         </div>
 
         <div class="filter-pills-group">
-          <button class="filter-btn active" data-filter="all">Tümü (13)</button>
-          <button class="filter-btn" data-filter="odev" style="border-color: rgba(45, 212, 191, 0.45); color: #2dd4bf; font-weight: 700;">🎯 Ödevde Kullanılanlar (9)</button>
-          <button class="filter-btn" data-filter="webgis">WebGIS</button>
-          <button class="filter-btn" data-filter="desktop">Masaüstü CBS</button>
-          <button class="filter-btn" data-filter="web">Web Geliştirme</button>
-          <button class="filter-btn" data-filter="db">Veritabanı</button>
-          <button class="filter-btn" data-filter="dev">Yazılım & Araçlar</button>
+          <button class="filter-btn active" data-filter="all" data-i18n="tech.filter_all">Tümü (13)</button>
+          <button class="filter-btn" data-filter="odev" style="border-color: rgba(45, 212, 191, 0.45); color: #2dd4bf; font-weight: 700;" data-i18n="tech.filter_odev">🎯 Ödevde Kullanılanlar (9)</button>
+          <button class="filter-btn" data-filter="webgis" data-i18n="tech.filter_webgis">WebGIS</button>
+          <button class="filter-btn" data-filter="desktop" data-i18n="tech.filter_desktop">Masaüstü CBS</button>
+          <button class="filter-btn" data-filter="web" data-i18n="tech.filter_web">Web Geliştirme</button>
+          <button class="filter-btn" data-filter="db" data-i18n="tech.filter_db">Veritabanı</button>
+          <button class="filter-btn" data-filter="dev" data-i18n="tech.filter_dev">Yazılım & Araçlar</button>
         </div>
       </div>
 
@@ -70,11 +75,11 @@
         <table class="custom-table">
           <thead>
             <tr>
-              <th scope="col">Yazılım / Teknoloji & Logo</th>
-              <th scope="col">Kategori & Rol</th>
-              <th scope="col">Ödevdeki Fonksiyonu & Mekânsal Kullanımı</th>
-              <th scope="col">Öğrenme / Yetkinlik</th>
-              <th scope="col">Ödev / Proje Durumu</th>
+              <th scope="col" data-i18n="table.th_tech">Yazılım / Teknoloji & Logo</th>
+              <th scope="col" data-i18n="table.th_cat">Kategori & Rol</th>
+              <th scope="col" data-i18n="table.th_role">Ödevdeki Fonksiyonu & Mekânsal Kullanımı</th>
+              <th scope="col" data-i18n="table.th_level">Öğrenme / Yetkinlik</th>
+              <th scope="col" data-i18n="table.th_status">Ödev / Proje Durumu</th>
             </tr>
           </thead>
           <tbody>
@@ -92,8 +97,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-webgis">WebGIS Kütüphanesi</span></td>
-              <td>Ödev 1'de <strong>1. Harita Motoru</strong> olarak kullanıldı. 30 ziyaret edilen şehrin koordinatlarını gösterme, özel SVG pin markerları, popup pencereleri, ölçek eşiği (Zoom < 5 gizleme) ve <code>noWrap: true</code> ile tek dünya sınırlandırması.</td>
+              <td><span class="table-badge badge-webgis" data-i18n="badge.webgis_lib">WebGIS Kütüphanesi</span></td>
+              <td data-i18n="td.leaflet_desc">Ödev 1'de <strong>1. Harita Motoru</strong> olarak kullanıldı. 30 ziyaret edilen şehrin koordinatlarını gösterme, özel SVG pin markerları, popup pencereleri, ölçek eşiği (Zoom < 5 gizleme) ve <code>noWrap: true</code> ile tek dünya sınırlandırması.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -102,7 +107,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">95%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1'de Aktif (Harita 1)</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_m1">🎯 Ödev 1'de Aktif (Harita 1)</span></td>
             </tr>
 
             <!-- 2. OpenLayers -->
@@ -118,8 +123,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-webgis">WebGIS Kütüphanesi</span></td>
-              <td>Ödev 1'de <strong>2. Harita Motoru</strong> olarak kullanıldı. EPSG:3857 (Web Mercator) projeksiyonunda 30 şehir vektör katmanı (VectorSource & VectorLayer), <code>minZoom: 5</code> kuralı ile marker çakışması önleme, <code>wrapX: false</code> dünya tekrarı çözümü ve HTML popup overlay.</td>
+              <td><span class="table-badge badge-webgis" data-i18n="badge.webgis_lib">WebGIS Kütüphanesi</span></td>
+              <td data-i18n="td.ol_desc">Ödev 1'de <strong>2. Harita Motoru</strong> olarak kullanıldı. EPSG:3857 (Web Mercator) projeksiyonunda 30 şehir vektör katmanı (VectorSource & VectorLayer), <code>minZoom: 5</code> kuralı ile marker çakışması önleme, <code>wrapX: false</code> dünya tekrarı çözümü ve HTML popup overlay.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -128,7 +133,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">90%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1'de Aktif (Harita 2)</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_m2">🎯 Ödev 1'de Aktif (Harita 2)</span></td>
             </tr>
 
             <!-- 3. HTML5 -->
@@ -144,8 +149,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-web">Web Standardı</span></td>
-              <td>Ödev 1 web sayfasının tüm yapısal iskeleti; semantik etiketler (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;aside&gt;</code>), W3C standartlarına uygun erişilebilirlik (ARIA etiketleri) ve SEO meta etiketleri.</td>
+              <td><span class="table-badge badge-web" data-i18n="badge.web_standard">Web Standardı</span></td>
+              <td data-i18n="td.html5_desc">Ödev 1 web sayfasının tüm yapısal iskeleti; semantik etiketler (<code>&lt;header&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;section&gt;</code>, <code>&lt;article&gt;</code>, <code>&lt;footer&gt;</code>), W3C standartlarına uygun erişilebilirlik (ARIA etiketleri) ve SEO meta etiketleri.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -154,7 +159,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">95%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1 Temel Yapısı</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_core">🎯 Ödev 1 Temel Yapısı</span></td>
             </tr>
 
             <!-- 4. CSS3 -->
@@ -170,8 +175,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-web">Web Tasarım & UI</span></td>
-              <td>Ödev 1 görsel tasarımı; haritacılık temalı zümrüt/turkuaz pusula gülü ve topoğrafik izohips dalgaları (%10 animasyon gereksinimi), CSS değişkenleri (Variables) ile Açık/Koyu tema yönetimi, cam efekti (Glassmorphism) ve mobil uyumlu CSS Grid/Flexbox düzeni.</td>
+              <td><span class="table-badge badge-web" data-i18n="badge.ui_design">Web Tasarım & UI</span></td>
+              <td data-i18n="td.css3_desc">Ödev 1 görsel tasarımı; haritacılık temalı zümrüt/turkuaz pusula gülü ve topoğrafik izohips dalgaları (%10 animasyon gereksinimi), CSS değişkenleri (Variables) ile Açık/Koyu tema yönetimi, cam efekti (Glassmorphism) ve mobil uyumlu CSS Grid/Flexbox düzeni.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -180,7 +185,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">95%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1 UI & Animasyon</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_ui">🎯 Ödev 1 UI & Animasyon</span></td>
             </tr>
 
             <!-- 5. JavaScript -->
@@ -196,8 +201,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-dev">Web Programlama</span></td>
-              <td>Ödev 1'de Leaflet ve OpenLayers harita nesnelerinin başlatılması, canlı koordinat takipçisi (mousemove), teknoloji arama ve filtreleme motoru, tema geçişi (LocalStorage) ve animasyonlu siber kapak ekranı geçişi.</td>
+              <td><span class="table-badge badge-dev" data-i18n="badge.web_prog">Web Programlama</span></td>
+              <td data-i18n="td.js_desc">Ödev 1'de Leaflet ve OpenLayers harita nesnelerinin başlatılması, canlı koordinat takipçisi (mousemove), teknoloji arama ve filtreleme motoru, tema geçişi (LocalStorage), çoklu dil desteği (TR/EN i18n).</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -206,7 +211,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">90%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1 Etkileşim Motoru</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_engine">🎯 Ödev 1 Etkileşim Motoru</span></td>
             </tr>
 
             <!-- 6. Esri World Imagery -->
@@ -222,8 +227,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-webgis">Uydu Altlık Servisi</span></td>
-              <td>Ödev 1 haritalarında yüksek çözünürlüklü küresel ortofoto uydu altlığı olarak entegre edildi. Türkiye ve KKTC'deki 30 şehrin gerçek arazi örtüsü, topoğrafyası ve kıyı çizgilerinin incelenmesine olanak tanır.</td>
+              <td><span class="table-badge badge-webgis" data-i18n="badge.sat_service">Uydu Altlık Servisi</span></td>
+              <td data-i18n="td.esri_desc">Ödev 1 haritalarında yüksek çözünürlüklü küresel ortofoto uydu altlığı olarak entegre edildi. Türkiye ve KKTC'deki 30 şehrin gerçek arazi örtüsü, topoğrafyası ve kıyı çizgilerinin incelenmesine olanak tanır.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -232,7 +237,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">90%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1 Uydu Altlığı</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_sat">🎯 Ödev 1 Uydu Altlığı</span></td>
             </tr>
 
             <!-- 7. OpenStreetMap -->
@@ -248,8 +253,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-webgis">Açık Kaynak Kartografya</span></td>
-              <td>Ödev 1'de Leaflet ve OpenLayers haritalarının varsayılan sokak ve topoğrafya altlığı. Küresel tile sunucusu üzerinden hızlı, standart ve açık kaynaklı kartografik altlık sağlar.</td>
+              <td><span class="table-badge badge-webgis" data-i18n="badge.osm_carto">Açık Kaynak Kartografya</span></td>
+              <td data-i18n="td.osm_desc">Ödev 1'de Leaflet ve OpenLayers haritalarının varsayılan sokak ve topoğrafya altlığı. Küresel tile sunucusu üzerinden hızlı, standart ve açık kaynaklı kartografik altlık sağlar.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -258,7 +263,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">95%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1 Sokak Altlığı</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_street">🎯 Ödev 1 Sokak Altlığı</span></td>
             </tr>
 
             <!-- 8. Jeodezik Mesafe Cetveli -->
@@ -274,8 +279,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-webgis">Jeodezik Hesaplama</span></td>
-              <td>Ödev 1 haritasında şehirler üzerine sırayla tıklanarak aralarındaki kuş uçuşu küresel jeodezik mesafeyi WGS84 elipsoidinde anlık hesaplayan interaktif ölçüm aracı.</td>
+              <td><span class="table-badge badge-webgis" data-i18n="badge.geodesy_calc">Jeodezik Hesaplama</span></td>
+              <td data-i18n="td.ruler_desc">Ödev 1 haritasında şehirler üzerine sırayla tıklanarak aralarındaki kuş uçuşu küresel jeodezik mesafeyi WGS84 elipsoidinde anlık hesaplayan interaktif ölçüm aracı.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -284,7 +289,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">92%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev 1 Ölçüm Aracı</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_ruler">🎯 Ödev 1 Ölçüm Aracı</span></td>
             </tr>
 
             <!-- 9. Git & GitHub / Pages -->
@@ -300,8 +305,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-dev">Versiyon Kontrol & Dağıtım</span></td>
-              <td>Ödev kaynak kodlarının sürüm takibi, commit geçmişi, akademik ödev teslim dokümantasyonu (README.md, AI beyanı) ve ödev web sayfasının internette canlı yayına alınması (GitHub Pages).</td>
+              <td><span class="table-badge badge-dev" data-i18n="badge.vcs">Versiyon Kontrol & Dağıtım</span></td>
+              <td data-i18n="td.git_desc">Ödev kaynak kodlarının sürüm takibi, commit geçmişi, akademik ödev teslim dokümantasyonu (README.md, AI beyanı) ve ödev web sayfasının internette canlı yayına alınması (GitHub Pages).</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -310,7 +315,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">88%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">🎯 Ödev Yayını & Kod Yönetimi</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.act_deploy">🎯 Ödev Yayını & Kod Yönetimi</span></td>
             </tr>
 
             <!-- 10. QGIS -->
@@ -326,8 +331,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-desktop">Masaüstü CBS</span></td>
-              <td>Mekânsal katman düzenleme, tampon (buffer) ve bindirme (overlay) analizi, ödevde haritalanan 30 şehrin koordinat doğruluk kontrolleri ve GeoJSON / Shapefile veri üretimi.</td>
+              <td><span class="table-badge badge-desktop" data-i18n="badge.desktop_gis">Masaüstü CBS</span></td>
+              <td data-i18n="td.qgis_desc">Mekânsal katman düzenleme, tampon (buffer) ve bindirme (overlay) analizi, ödevde haritalanan 30 şehrin koordinat doğruluk kontrolleri ve GeoJSON / Shapefile veri üretimi.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -336,10 +341,10 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">95%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">Veri Üretimi & Analiz</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.data_prod">Veri Üretimi & Analiz</span></td>
             </tr>
 
-            <!-- 11. ArcGIS (PROSUZ) -->
+            <!-- 11. ArcGIS -->
             <tr data-category="desktop">
               <td>
                 <div class="table-item-cell">
@@ -352,8 +357,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-desktop">Masaüstü CBS</span></td>
-              <td>Mekânsal veri tabanı tasarımı, 3D arazi modeli görselleştirme, harita servisleri (MapServer / FeatureServer) yayınlama ve jeoistatistiksel analizler.</td>
+              <td><span class="table-badge badge-desktop" data-i18n="badge.desktop_gis">Masaüstü CBS</span></td>
+              <td data-i18n="td.arcgis_desc">Mekânsal veri tabanı tasarımı, 3D arazi modeli görselleştirme, harita servisleri (MapServer / FeatureServer) yayınlama ve jeoistatistiksel analizler.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -362,7 +367,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">85%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">Ders Uygulaması & CBS</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.lab_gis">Ders Uygulaması & CBS</span></td>
             </tr>
 
             <!-- 12. PostgreSQL / PostGIS -->
@@ -378,8 +383,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-spatial-db">Mekânsal Veritabanı</span></td>
-              <td>ST_Intersects, ST_Buffer, ST_Distance gibi mekânsal SQL fonksiyonları, GiST indeksleme ve büyük vektör veri kümelerinin yüksek performanslı sorgulanması.</td>
+              <td><span class="table-badge badge-spatial-db" data-i18n="badge.spatial_db">Mekânsal Veritabanı</span></td>
+              <td data-i18n="td.postgis_desc">ST_Intersects, ST_Buffer, ST_Distance gibi mekânsal SQL fonksiyonları, GiST indeksleme ve büyük vektör veri kümelerinin yüksek performanslı sorgulanması.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -388,7 +393,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">78%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">Teorik & Lab Çalışmaları</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.theory_lab">Teorik & Lab Çalışmaları</span></td>
             </tr>
 
             <!-- 13. Python Geo-Stack -->
@@ -404,8 +409,8 @@
                   </div>
                 </div>
               </td>
-              <td><span class="table-badge badge-dev">Yazılım & Veri Bilimi</span></td>
-              <td>Mekânsal veri işleme otomasyonu, koordinat dönüşümleri, GeoJSON üretim betikleri ve yerel test HTTP sunucusu ile geliştirme ortamı.</td>
+              <td><span class="table-badge badge-dev" data-i18n="badge.data_science">Yazılım & Veri Bilimi</span></td>
+              <td data-i18n="td.python_desc">Mekânsal veri işleme otomasyonu, koordinat dönüşümleri, GeoJSON üretim betikleri ve yerel test HTTP sunucusu ile geliştirme ortamı.</td>
               <td>
                 <div style="display: flex; align-items: center; gap: 0.75rem;">
                   <div class="proficiency-bar-bg">
@@ -414,7 +419,7 @@
                   <span style="font-size: 0.85rem; font-family: var(--font-mono); color: var(--secondary);">85%</span>
                 </div>
               </td>
-              <td><span class="issue-status-badge status-active">Aktif Kullanımda</span></td>
+              <td><span class="issue-status-badge status-active" data-i18n="status.active_use">Aktif Kullanımda</span></td>
             </tr>
 
           </tbody>
@@ -426,27 +431,27 @@
     <section class="cards-grid">
       <article class="info-card">
         <div class="card-icon-box">⚡</div>
-        <h3>Leaflet vs OpenLayers Seçimi</h3>
-        <p>
+        <h3 data-i18n="techcard.1_title">Leaflet vs OpenLayers Seçimi</h3>
+        <p data-i18n="techcard.1_desc">
           Leaflet hızlı, hafif ve temel haritalama senaryoları için kusursuzdur. OpenLayers ise farklı koordinat referans sistemleri (CRS) ve karmaşık vektör veri katmanları için endüstri standardıdır.
         </p>
       </article>
 
       <article class="info-card">
         <div class="card-icon-box">🎯</div>
-        <h3>Sürekli Mesleki Gelişim</h3>
-        <p>
+        <h3 data-i18n="techcard.2_title">Sürekli Mesleki Gelişim</h3>
+        <p data-i18n="techcard.2_desc">
           Geomatik mühendisliğinde açık veri standartları (OGC), GeoJSON, WMS/WFS servisleri ve modern web harita mimarilerini araştırarak kendimi sürekli güncel tutuyorum.
         </p>
       </article>
 
       <article class="info-card">
         <div class="card-icon-box">🚀</div>
-        <h3>Sıradaki Adım</h3>
+        <h3 data-i18n="techcard.3_title">Sıradaki Adım</h3>
         <p>
-          İki haritanın çalıştığı ve zoom threshold ile dünya tekrarı sorunlarının çözüldüğü interaktif sayfaya göz atın:
+          <span data-i18n="techcard.3_desc">İki haritanın çalıştığı ve zoom threshold ile dünya tekrarı sorunlarının çözüldüğü interaktif sayfaya göz atın:</span>
           <br><br>
-          <a href="maps.html" class="btn btn-primary btn-sm" style="margin-top: 0.5rem;">Web Haritalarına Git ➔</a>
+          <a href="maps.html" class="btn btn-primary btn-sm" style="margin-top: 0.5rem;" data-i18n="techcard.3_btn">Web Haritalarına Git ➔</a>
         </p>
       </article>
     </section>
@@ -457,18 +462,19 @@
   <footer class="site-footer">
     <div class="footer-container">
       <div class="footer-left">
-        <div class="footer-title">GMT 458 – Web GIS | Ödev 1: Kişisel Web Sayfası</div>
-        <div class="footer-subtitle">Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü © <span id="currentYear">2026</span> Begüm Miray Dengiz</div>
+        <div class="footer-title" data-i18n="footer.title">GMT 458 – Web GIS | Ödev 1: Kişisel Web Sayfası</div>
+        <div class="footer-subtitle" data-i18n="footer.subtitle">Hacettepe Üniversitesi Geomatik Mühendisliği Bölümü © 2026 Begüm Miray Dengiz</div>
       </div>
       <ul class="footer-links">
-        <li><a href="index.html">Özgeçmiş</a></li>
-        <li><a href="technologies.html">Tablo</a></li>
-        <li><a href="maps.html">Web Haritaları</a></li>
-        <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener">Peer Review Sistemi ↗</a></li>
+        <li><a href="index.html" data-i18n="nav.resume">Özgeçmiş</a></li>
+        <li><a href="technologies.html" data-i18n="nav.table">Tablo</a></li>
+        <li><a href="maps.html" data-i18n="nav.maps">Web Haritaları</a></li>
+        <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener" data-i18n="footer.review">Peer Review Sistemi ↗</a></li>
       </ul>
     </div>
   </footer>
 
+  <script src="js/i18n.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>
