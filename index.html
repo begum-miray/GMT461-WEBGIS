@@ -8,7 +8,71 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" type="image/svg+xml" href="assets/images/avatar.svg">
 </head>
-<body>
+<body class="cover-open">
+
+  <!-- =========================================================================
+       Sade & Modern Dünya Resimli Giriş Kapak Ekranı (Clean Earth Globe Cover)
+       ========================================================================= -->
+  <aside id="siteCoverOverlay" class="site-cover-overlay" aria-label="Giriş Kapak Ekranı">
+    
+    <!-- Yumuşak Topoğrafik Çizgi Arka Planı (Sade & Zarif) -->
+    <svg class="cover-topo-svg" viewBox="0 0 1200 800" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <linearGradient id="topoGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#2dd4bf" stop-opacity="0.3" />
+          <stop offset="50%" stop-color="#10b981" stop-opacity="0.6" />
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.2" />
+        </linearGradient>
+      </defs>
+      <path class="topo-line topo-1" d="M -100,160 Q 300,70 650,180 T 1300,130" />
+      <path class="topo-line topo-2" d="M -100,320 Q 380,220 720,340 T 1300,260" />
+      <path class="topo-line topo-3" d="M -100,520 Q 250,620 700,480 T 1300,530" />
+      <path class="topo-line topo-4" d="M -100,680 Q 480,590 850,710 T 1300,640" />
+    </svg>
+
+    <!-- Cam Efektli & Sade Karşılama Kartı -->
+    <div class="cover-modal-card">
+      
+      <div class="cover-badge-pill">
+        <span class="badge-pulsing-dot"></span>
+        <span data-i18n="cover.badge">Hacettepe Üniversitesi • Geomatik Mühendisliği</span>
+      </div>
+
+      <!-- Sade & Parlayan 3D Dünya Resmi (Clean Earth Globe) -->
+      <div class="cover-globe-container">
+        <img src="assets/images/earth_globe.jpg" alt="WebGIS Earth Globe" class="cover-globe-img">
+      </div>
+
+      <h1 class="cover-title">
+        <span class="cover-title-sub" data-i18n="cover.sub">GMT 458 – WEB GIS DERSİ</span>
+        <span class="cover-title-main shimmer-text" data-i18n="cover.name">Begüm Miray Dengiz</span>
+      </h1>
+
+      <p class="cover-tagline" data-i18n="cover.tagline">
+        Kişisel Web Sayfası & Geomatik Mühendisliği Portfolyosu
+      </p>
+
+      <!-- Cartographic Status Bar -->
+      <div class="cover-geo-status">
+        <span class="geo-status-dot"></span>
+        <span data-i18n="cover.geo_status">Harita Projeksiyonu: Web Mercator (EPSG:3857) • Jeodezik Datum: WGS84</span>
+      </div>
+
+      <!-- Action Enter Button -->
+      <div class="cover-action-box">
+        <button id="coverEnterBtn" class="cover-enter-btn" title="Siteye Giriş Yap ve Portfolyoyu Keşfet">
+          <span class="btn-content">
+            <span data-i18n="cover.btn">Siteye Giriş Yap</span>
+            <span class="btn-arrow">➔</span>
+          </span>
+        </button>
+        <p class="cover-hint-text" data-i18n="cover.hint">
+          Butona tıklayarak veya <kbd>Enter</kbd> tuşuna basarak portfolyoya giriş yapabilirsiniz
+        </p>
+      </div>
+
+    </div>
+  </aside>
 
   <!-- Site Navigation -->
   <header class="site-header">
@@ -19,6 +83,9 @@
       </a>
 
       <div class="nav-right-cluster">
+        <!-- Re-open Intro Cover Button -->
+        <button id="reopenCoverBtn" class="intro-cover-btn" aria-label="Giriş Kapağını Göster" title="Açılış Kapak Animasyonunu Tekrar Oynat" data-i18n="nav.cover_btn">🎬 Giriş Kapağı</button>
+
         <!-- Multi-Language Selector (TR / EN) -->
         <div class="lang-switcher" role="group" aria-label="Dil Seçimi / Language Selector">
           <button class="lang-btn active" data-lang="tr" title="Türkçe">TR</button>
@@ -50,13 +117,12 @@
           <span data-i18n="hero.greeting">Merhaba, Ben</span> <span data-i18n="hero.name">Begüm Miray Dengiz</span>
         </h1>
         <div class="hero-role">
-          <span data-i18n="hero.role">📐 Geomatik Mühendisliği Son Sınıf Öğrencisi & WebGIS Geliştiricisi</span>
+          <span data-i18n="hero.role">📐 Geomatik Mühendisliği Son Sınıf Öğrencisi</span>
         </div>
         <p class="hero-bio" data-i18n="hero.bio">
           Hacettepe Üniversitesi Mühendislik Fakültesi Geomatik Mühendisliği Bölümü son sınıf öğrencisiyim. 
           Mesleki stajlarımı <strong>Karayolları 4. Bölge Müdürlüğü</strong>, <strong>Doruk Harita Şirketi</strong> 
-          ve <strong>Çankaya LİHKAB</strong> bünyesinde tamamladım. Coğrafi Bilgi Sistemleri (CBS), açık kaynaklı WebGIS 
-          haritalama teknolojileri (Leaflet, OpenLayers) ve mekânsal veri analizleri üzerine çalışmalarımı sürdürüyorum.
+          ve <strong>Çankaya LİHKAB</strong> bünyesinde tamamladım.
         </p>
 
         <div class="hero-actions">
@@ -64,56 +130,26 @@
             <span data-i18n="hero.btn_maps">🗺️ Web Haritalarını İncele (30 Şehir)</span>
           </a>
           <a href="technologies.html" class="btn btn-secondary">
-            <span data-i18n="hero.btn_tech">📊 Teknolojiler & Beceriler</span>
+            <span data-i18n="hero.btn_tech">📊 Teknolojiler</span>
+          </a>
+          <a href="mailto:begumdengiz@hacettepe.edu.tr" class="btn btn-secondary" title="E-Posta Gönder">
+            <span>✉️ begumdengiz@hacettepe.edu.tr</span>
           </a>
         </div>
       </div>
-
-      <!-- Avatar Card -->
-      <div class="hero-avatar-card">
-        <div class="avatar-wrapper animate-float">
-          <img src="assets/images/avatar.svg" alt="Begüm Miray Dengiz Avatar" class="avatar-img animate-pulse-glow">
-          <div class="avatar-status-badge">
-            <span class="status-dot"></span>
-            <span data-i18n="hero.avatar_role">Son Sınıf Öğrencisi</span>
-          </div>
-        </div>
-        <h3 style="font-size: 1.2rem; margin-top: 0.5rem;" data-i18n="hero.name">Begüm Miray Dengiz</h3>
-        <p style="font-size: 0.88rem; color: var(--text-muted);" data-i18n="hero.avatar_sub">Hacettepe Geomatik Müh.</p>
-      </div>
     </section>
 
-    <!-- 3-Column Simple & Elegant Profile Cards -->
+    <!-- Simple & Elegant Academic Education Card -->
     <section class="simple-section animate-fade-up">
       <div class="profile-cards-grid">
         
-        <!-- Card 1: Academic Education -->
+        <!-- Academic Education Card -->
         <article class="profile-card">
           <span class="profile-card-icon">🎓</span>
           <h3 data-i18n="cards.edu_title">Akademik Eğitim</h3>
-          <span class="card-subtitle" data-i18n="cards.edu_sub">Hacettepe Üniversitesi (2020 – 2026)</span>
+          <span class="card-subtitle" data-i18n="cards.edu_sub">Hacettepe Üniversitesi (2022 – Günümüz)</span>
           <p data-i18n="cards.edu_desc">
             Mühendislik Fakültesi Geomatik Mühendisliği Bölümü. CBS, Fotogrametri, Jeodezi, Uzaktan Algılama ve GMT 458 Web GIS dersi kapsamında açık kaynaklı mekânsal yazılım mimarileri.
-          </p>
-        </article>
-
-        <!-- Card 2: Professional Internships -->
-        <article class="profile-card">
-          <span class="profile-card-icon">💼</span>
-          <h3 data-i18n="cards.intern_title">Mesleki Stajlar</h3>
-          <span class="card-subtitle" data-i18n="cards.intern_sub">Kamu ve Özel Sektör Deneyimi</span>
-          <p data-i18n="cards.intern_desc">
-            <strong>Karayolları 4. Bölge Müdürlüğü</strong> (yol & güzergah etüdü), <strong>Doruk Harita</strong> (halihazır harita üretimi & kadastro) ve <strong>Çankaya LİHKAB</strong> (lisanslı harita bürosu, tescil ve aplikasyon).
-          </p>
-        </article>
-
-        <!-- Card 3: Focus & Research Areas -->
-        <article class="profile-card">
-          <span class="profile-card-icon">🔬</span>
-          <h3 data-i18n="cards.focus_title">İlgi & Uzmanlık Alanları</h3>
-          <span class="card-subtitle" data-i18n="cards.focus_sub">Mekânsal Bilişim & Web Teknolojileri</span>
-          <p data-i18n="cards.focus_desc">
-            Açık kaynaklı WebGIS kütüphaneleri (Leaflet, OpenLayers), masaüstü CBS (QGIS, ArcGIS), mekânsal veritabanı (PostGIS) ve modern web geliştirme (HTML5, CSS3, JavaScript).
           </p>
         </article>
 
@@ -163,6 +199,11 @@
         🌐 İletişim & Proje Bağlantıları
       </div>
       <div class="contact-links-group">
+        <a href="mailto:begumdengiz@hacettepe.edu.tr" class="contact-pill-link">
+          <span>✉️</span>
+          <span>begumdengiz@hacettepe.edu.tr</span>
+          <span>↗</span>
+        </a>
         <a href="https://github.com/begum-miray/GMT461-WEBGIS" target="_blank" rel="noopener" class="contact-pill-link">
           <span>📦</span>
           <span data-i18n="contact.github">GitHub Deposu (GMT461-WEBGIS)</span>
@@ -189,6 +230,7 @@
         <li><a href="index.html" data-i18n="nav.resume">Özgeçmiş</a></li>
         <li><a href="technologies.html" data-i18n="nav.table">Tablo</a></li>
         <li><a href="maps.html" data-i18n="nav.maps">Web Haritaları</a></li>
+        <li><a href="mailto:begumdengiz@hacettepe.edu.tr">✉️ begumdengiz@hacettepe.edu.tr</a></li>
         <li><a href="https://gmt458.hacettepe.edu.tr/" target="_blank" rel="noopener" data-i18n="footer.review">Peer Review Sistemi ↗</a></li>
       </ul>
     </div>

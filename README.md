@@ -2,6 +2,7 @@
 
 **Student:** Begüm Miray Dengiz  
 **Student ID:** 2220674057  
+**Email:** [begumdengiz@hacettepe.edu.tr](mailto:begumdengiz@hacettepe.edu.tr)  
 **Institution:** Hacettepe University, Faculty of Engineering, Department of Geomatics Engineering  
 **Course:** GMT 458 – Web GIS  
 **Academic Term:** Fall 2026  
@@ -31,7 +32,7 @@ All directives and requirements specified in the GMT 458 rubric have been comple
 | :--- | :---: | :---: | :--- |
 | **HTML Structure** | 15% | ✅ Complete | 3 multi-page documents (`index.html`, `technologies.html`, `maps.html`), semantic markup (`<header>`, `<main>`, `<section>`, `<article>`, `<footer>`, `<aside>`), W3C compliance, ARIA accessibility, and SEO meta tags. |
 | **CSS Animations** | 10% | ✅ Complete | Hardware-accelerated CSS animations (`@keyframes topoFlow`, `@keyframes radarSpin`, `@keyframes scanSweep`, `@keyframes compassBreathing`, `@keyframes satelliteRevolution`, `@keyframes beaconPulse`, `@keyframes slideInUp`), and smooth splash transition. |
-| **Tabular Information & Imagery** | 10% | ✅ Complete | Dynamic table in `technologies.html` with original SVG logos, live search input, multi-category tag filtering (`🎯 Used in Assignment (9)`, WebGIS, Desktop, Web, DB, Dev), proficiency progress bars, and assignment roles. |
+| **Tabular Information & Imagery** | 10% | ✅ Complete | Dynamic table in `technologies.html` with original SVG logos, live search input, multi-category tag filtering (`🎯 Used in Assignment (9)`, WebGIS, Desktop, Web, DB, Dev), category badges, and assignment roles. |
 | **OpenLayers (OL) Map** | 10% | ✅ Complete | OpenLayers v9.2.4 implementation on `maps.html` featuring 30 visited cities as vector features, EPSG:3857 projection, Esri World Imagery & OSM basemaps, coordinate tracking, scale control, and dynamic popup overlays. |
 | **Leaflet Map** | 10% | ✅ Complete | Leaflet v1.9.4 implementation on `maps.html` featuring 30 visited cities, custom SVG pin markers, Esri World Imagery & OSM basemaps, 6-region filter controls (including KKTC), and an interactive great-circle distance measurement tool. |
 | **Issue 1: Zoom Threshold** | 10% | ✅ Complete | Resolved marker overlap at global zooms: Leaflet listens to `zoomend` and hides markers when `zoom < 5`; OpenLayers enforces `minZoom: 5` directly on the vector layer. Markers automatically reappear at regional/national scale (`zoom ≥ 5`). |

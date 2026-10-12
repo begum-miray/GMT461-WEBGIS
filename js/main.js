@@ -5,12 +5,91 @@
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initCoverScreen();
   initThemeToggle();
   initMobileNav();
   initDynamicYear();
   highlightActiveNav();
   initTableSearchFilter();
 });
+
+/* ==========================================================================
+   0. Sade & Modern Dünya Resimli Giriş Kapağı (Intro Cover Screen)
+   ========================================================================== */
+function initCoverScreen() {
+  const coverOverlay = document.getElementById('siteCoverOverlay');
+  const enterBtn = document.getElementById('coverEnterBtn');
+  const reopenBtn = document.getElementById('reopenCoverBtn');
+
+  // If on sub-pages (maps.html, technologies.html), handle reopen button navigation
+  if (!coverOverlay) {
+    if (reopenBtn) {
+      reopenBtn.addEventListener('click', () => {
+        window.location.href = 'index.html?intro=true';
+      });
+    }
+    return;
+  }
+
+  const urlParams = new URLSearchParams(window.location.search);
+  const forceIntro = urlParams.get('intro') === 'true';
+  const isReload = (performance.getEntriesByType && 
+                    performance.getEntriesByType('navigation')[0] && 
+                    performance.getEntriesByType('navigation')[0].type === 'reload');
+
+  if (isReload) {
+    sessionStorage.removeItem('gmt458_visited_cover');
+  }
+
+  const hasVisited = sessionStorage.getItem('gmt458_visited_cover');
+
+  function openCover() {
+    coverOverlay.style.display = 'flex';
+    document.body.classList.add('cover-open');
+    void coverOverlay.offsetWidth;
+    coverOverlay.classList.remove('cover-fade-out');
+  }
+
+  function closeCover() {
+    coverOverlay.classList.add('cover-fade-out');
+    document.body.classList.remove('cover-open');
+    sessionStorage.setItem('gmt458_visited_cover', 'true');
+
+    setTimeout(() => {
+      coverOverlay.style.display = 'none';
+    }, 850);
+  }
+
+  // Display cover on initial entry, page reload, or when ?intro=true is requested
+  if (forceIntro || !hasVisited) {
+    openCover();
+  } else {
+    coverOverlay.style.display = 'none';
+    document.body.classList.remove('cover-open');
+  }
+
+  if (enterBtn) {
+    enterBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      closeCover();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (coverOverlay.style.display !== 'none' && !coverOverlay.classList.contains('cover-fade-out')) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        closeCover();
+      }
+    }
+  });
+
+  if (reopenBtn) {
+    reopenBtn.addEventListener('click', () => {
+      openCover();
+    });
+  }
+}
 
 /* ==========================================================================
    1. Light / Dark Theme Mode Toggle

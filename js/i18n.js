@@ -12,23 +12,33 @@ const translations = {
     "nav.resume": "Özgeçmiş",
     "nav.table": "Tablo",
     "nav.maps": "Web Haritaları",
+    "nav.cover_btn": "🎬 Giriş Kapağı",
     "theme.title_dark": "Karanlık Moda Geç",
     "theme.title_light": "Aydınlık Moda Geç",
+
+    // Cover / Splash Screen
+    "cover.badge": "🏛️ Hacettepe Üniversitesi • Geomatik Mühendisliği",
+    "cover.sub": "GMT 458 – WEB GIS DERSİ",
+    "cover.name": "Begüm Miray Dengiz",
+    "cover.tagline": "Kişisel Web Sayfası & Geomatik Mühendisliği Portfolyosu",
+    "cover.geo_status": "Harita Projeksiyonu: Web Mercator (EPSG:3857) • Jeodezik Datum: WGS84",
+    "cover.btn": "Siteye Giriş Yap",
+    "cover.hint": "Butona tıklayarak veya <kbd>Enter</kbd> tuşuna basarak portfolyoya giriş yapabilirsiniz",
 
     // Index - Hero Section
     "hero.badge": "🏛️ Hacettepe Üniversitesi • Geomatik Mühendisliği",
     "hero.greeting": "Merhaba, Ben",
     "hero.name": "Begüm Miray Dengiz",
-    "hero.role": "📐 Geomatik Mühendisliği Son Sınıf Öğrencisi & WebGIS Geliştiricisi",
-    "hero.bio": "Hacettepe Üniversitesi Mühendislik Fakültesi Geomatik Mühendisliği Bölümü son sınıf öğrencisiyim. Mesleki stajlarımı <strong>Karayolları 4. Bölge Müdürlüğü</strong>, <strong>Doruk Harita Şirketi</strong> ve <strong>Çankaya LİHKAB</strong> bünyesinde tamamladım. Coğrafi Bilgi Sistemleri (CBS), açık kaynaklı WebGIS haritalama teknolojileri (Leaflet, OpenLayers) ve mekânsal veri analizleri üzerine çalışmalarımı sürdürüyorum.",
+    "hero.role": "📐 Geomatik Mühendisliği Son Sınıf Öğrencisi",
+    "hero.bio": "Hacettepe Üniversitesi Mühendislik Fakültesi Geomatik Mühendisliği Bölümü son sınıf öğrencisiyim. Mesleki stajlarımı <strong>Karayolları 4. Bölge Müdürlüğü</strong>, <strong>Doruk Harita Şirketi</strong> ve <strong>Çankaya LİHKAB</strong> bünyesinde tamamladım.",
     "hero.btn_maps": "🗺️ Web Haritalarını İncele (30 Şehir)",
-    "hero.btn_tech": "📊 Teknolojiler & Beceriler",
+    "hero.btn_tech": "📊 Teknolojiler",
     "hero.avatar_role": "Son Sınıf Öğrencisi",
     "hero.avatar_sub": "Hacettepe Geomatik Müh.",
 
     // Index - Information Cards
     "cards.edu_title": "🎓 Akademik Eğitim",
-    "cards.edu_sub": "Hacettepe Üniversitesi (2020 – 2026)",
+    "cards.edu_sub": "Hacettepe Üniversitesi (2022 – Günümüz)",
     "cards.edu_desc": "Mühendislik Fakültesi Geomatik Mühendisliği Bölümü. CBS, Fotogrametri, Jeodezi, Uzaktan Algılama ve GMT 458 Web GIS dersi kapsamında açık kaynaklı mekânsal yazılım mimarileri.",
 
     "cards.intern_title": "💼 Mesleki Stajlar",
@@ -51,7 +61,7 @@ const translations = {
     // Index - Contact / Links
     "contact.title": "🌐 İletişim & Proje Bağlantıları",
     "contact.github": "GitHub Deposu (GMT461-WEBGIS)",
-    "contact.email": "Hacettepe E-Posta",
+    "contact.email": "begumdengiz@hacettepe.edu.tr",
     "contact.review": "Peer Review Sistemi",
 
     // Technologies Page
@@ -206,23 +216,33 @@ const translations = {
     "nav.resume": "Resume & About",
     "nav.table": "Table",
     "nav.maps": "Web Maps",
+    "nav.cover_btn": "🎬 Cover Screen",
     "theme.title_dark": "Switch to Dark Mode",
     "theme.title_light": "Switch to Light Mode",
+
+    // Cover / Splash Screen
+    "cover.badge": "🏛️ Hacettepe University • Geomatics Engineering",
+    "cover.sub": "GMT 458 – WEB GIS COURSE",
+    "cover.name": "Begüm Miray Dengiz",
+    "cover.tagline": "Personal Web Page & Geomatics Engineering Portfolio",
+    "cover.geo_status": "Map Projection: Web Mercator (EPSG:3857) • Geodetic Datum: WGS84",
+    "cover.btn": "Enter Portfolio",
+    "cover.hint": "Click the button or press <kbd>Enter</kbd> to enter portfolio",
 
     // Index - Hero Section
     "hero.badge": "🏛️ Hacettepe University • Geomatics Engineering",
     "hero.greeting": "Hello, I am",
     "hero.name": "Begüm Miray Dengiz",
-    "hero.role": "📐 Senior Geomatics Engineering Student & WebGIS Developer",
-    "hero.bio": "I am a senior Geomatics Engineering student at Hacettepe University, Faculty of Engineering. I completed my professional internships at the <strong>4th Regional Directorate of Highways</strong>, <strong>Doruk Mapping Company</strong>, and <strong>Çankaya LIHKAB</strong>. I conduct research and development on Geographic Information Systems (GIS), open-source WebGIS mapping technologies (Leaflet, OpenLayers), and spatial data analysis.",
+    "hero.role": "📐 Senior Geomatics Engineering Student",
+    "hero.bio": "I am a senior Geomatics Engineering student at Hacettepe University, Faculty of Engineering. I completed my professional internships at the <strong>4th Regional Directorate of Highways</strong>, <strong>Doruk Mapping Company</strong>, and <strong>Çankaya LIHKAB</strong>.",
     "hero.btn_maps": "🗺️ Explore Web Maps (30 Cities)",
-    "hero.btn_tech": "📊 Technologies & Skills",
+    "hero.btn_tech": "📊 Technologies",
     "hero.avatar_role": "Senior Student",
     "hero.avatar_sub": "Hacettepe Geomatics Eng.",
 
     // Index - Information Cards
     "cards.edu_title": "🎓 Academic Education",
-    "cards.edu_sub": "Hacettepe University (2020 – 2026)",
+    "cards.edu_sub": "Hacettepe University (2022 – Present)",
     "cards.edu_desc": "Faculty of Engineering, Department of Geomatics Engineering. Studies in GIS, Photogrammetry, Geodesy, Remote Sensing, and open-source geospatial software architecture under the GMT 458 Web GIS course.",
 
     "cards.intern_title": "💼 Professional Internships",
@@ -245,7 +265,7 @@ const translations = {
     // Index - Contact / Links
     "contact.title": "🌐 Contact & Project Links",
     "contact.github": "GitHub Repository (GMT461-WEBGIS)",
-    "contact.email": "Hacettepe Email",
+    "contact.email": "begumdengiz@hacettepe.edu.tr",
     "contact.review": "Peer Review System",
 
     // Technologies Page
