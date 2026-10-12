@@ -1,6 +1,7 @@
 # GMT 458 – Web GIS | Assignment 1: Personal Web Page & Interactive WebGIS Portfolio
 
 **Student:** Begüm Miray Dengiz  
+**Student ID:** 2220674057  
 **Institution:** Hacettepe University, Faculty of Engineering, Department of Geomatics Engineering  
 **Course:** GMT 458 – Web GIS  
 **Academic Term:** Fall 2026  
